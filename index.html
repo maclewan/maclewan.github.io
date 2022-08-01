@@ -8,12 +8,15 @@
 </head>
 <body>
     <nav>
+        <button onclick="toggleMenu()">Menu</button>
+    </nav>
+    <menu id="menu" style="display: none">
         <button>Watch tutorial</button>
         <button>Load *.englerson file</button>
         <button>Save *.englerson file</button>
         <button>Generate PDF file</button>
         <button>Clear all</button>
-    </nav>
+    </menu>
     <div id="presets-section">
         <div id="presets-container">
             <button>1</button>
@@ -31,7 +34,7 @@
                 <input type="checkbox" id="switch" />
                 <label for="switch">Toggle</label>
             </div>
-            <label id="state">state-to-be-set</label>
+            <label id="state">State mode / Diff mode</label>
 
 
 

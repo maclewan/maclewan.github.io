@@ -13,19 +13,31 @@ input {
 }
 
 nav {
-  background-color: lightgreen;
-  height: fit-content;
-
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 10px 10px 0 10px;
 }
 
 nav > button {
+  width: 30vw;
+  margin: 5px;
+}
+
+menu {
+  background-color: lightgreen;
+  height: fit-content;
+
+
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+
+}
+
+menu > button {
   width: 80vw;
-  margin: 1vw;
+  margin: 5px;
 }
 
 #flex-container {
