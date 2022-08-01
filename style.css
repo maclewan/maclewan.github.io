@@ -2,10 +2,14 @@
 /*  background-color: lightblue;*/
 /*}*/
 
+button {
+  font-size: 26px;
+}
+
 nav {
   background-color: lightgreen;
   height: fit-content;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,8 +17,8 @@ nav {
 }
 
 nav > button {
-  width: 200px;
-  margin: 5px;
+  width: 400px;
+  margin: 10px;
 }
 
 #flex-container {
@@ -23,16 +27,16 @@ nav > button {
 
 #presets-section {
   width: available;
-  height: 250px;
+  height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 #presets-section > div {
-  margin: 25px;
-  width: 260px;
-  height: 200px;
+  margin: 50px;
+  width: 540px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -43,7 +47,7 @@ nav > button {
 }
 
 #presets-container > button {
-  margin: 1px 4px;
+  margin: 2px 8px;
 }
 
 #presets-menu {
@@ -61,17 +65,17 @@ nav > button {
   width: available;
   height: 100vh;
   display: grid;
-  column-gap: 40px;
+  column-gap: 80px;
 }
 
 #registers-grid > div {
   background-color: #c47373;
-  grid-template-columns: 40px 40px 40px 40px 40px 40px;
-  grid-template-rows: 60px 60px 60px 60px 60px 50px 60px;
+  grid-template-columns: 80px 80px 80px 80px 80px 80px;
+  grid-template-rows: 120px 120px 120px 120px 120px 100px 120px;
   display: grid;
 
-  column-gap: 5px;
-  row-gap: 5px;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 #left-side {
@@ -93,12 +97,12 @@ nav > button {
 }
 
 .handle-div > button {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
 }
 
 .handle-div > label {
-  height: 20px;
-  font-size: 8px;
+  height: 40px;
+  font-size: 16px;
   text-align: center;
 }
