@@ -1,0 +1,100 @@
+{
+  "left": {
+    "1": {
+      "1": "Ober ventil",
+      "2": "Principal 16",
+      "3": "Posaune 32",
+      "4": "Violon 16",
+      "5": "Mixtur IV",
+      "6": "Principal 8"
+    },
+    "2": {
+      "1": "Ped ventil",
+      "2": "Octave 8",
+      "3": "Posaune 16",
+      "4": "Principal 8",
+      "5": "Sesquialtera II",
+      "6": "Octave 4"
+    },
+    "3": {
+      "1": "HM ventil",
+      "2": "Super-Octave 4",
+      "3": "Trombet 8",
+      "4": "Octave 4",
+      "5": "Quinte 3",
+      "6": "Super-Octave 2"
+    },
+    "4": {
+      "1": "RP ventil",
+      "2": "Mixtur V",
+      "3": "Glockenspiel",
+      "4": "Super-Octave 2",
+      "5": "Cimbel III",
+      "6": "Sedecima 1"
+    },
+    "5": {
+      "1": "Rohr ventil",
+      "2": "-",
+      "3": "Calc. Glocke",
+      "4": "Mixtur V",
+      "5": "Trombet 8",
+      "6": "Chalumeau 8"
+    },
+    "7": {
+      "1": "Mixtur IV",
+      "2": "Hautbois 8",
+      "3": "Super Octave 2",
+      "4": "Octave 4",
+      "5": "Principal 8"
+    }
+  },
+  "right": {
+    "1": {
+      "1": "Oberwerk ventil",
+      "2": "Principal 16",
+      "3": "Posaune 32",
+      "4": "Violon 16",
+      "5": "Mixtur 4",
+      "6": "Principal 8"
+    },
+    "2": {
+      "1": "Pedal ventil",
+      "2": "Octave 8",
+      "3": "Posaune 16",
+      "4": "Principal 8",
+      "5": "Sesquialtera 2",
+      "6": "Octave 4"
+    },
+    "3": {
+      "1": "Pedal",
+      "2": "Octave",
+      "3": "Posaue",
+      "4": "Princl",
+      "5": "Sesqu",
+      "6": "Octave"
+    },
+    "4": {
+      "1": "Pedal",
+      "2": "Octave",
+      "3": "Posaue",
+      "4": "Princl",
+      "5": "Sesqu",
+      "6": "Octave"
+    },
+    "5": {
+      "1": "Pedal",
+      "2": "Octave",
+      "3": "Posaue",
+      "4": "Princl",
+      "5": "Sesqu",
+      "6": "Octave"
+    },
+    "7": {
+      "2": "Octave",
+      "3": "Posaue",
+      "4": "Princl",
+      "5": "Sesqu",
+      "6": "Octave"
+    }
+  }
+}

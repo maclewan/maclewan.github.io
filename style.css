@@ -1,0 +1,104 @@
+/*body {*/
+/*  background-color: lightblue;*/
+/*}*/
+
+nav {
+  background-color: lightgreen;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav > button {
+  width: 200px;
+  margin: 5px;
+}
+
+#flex-container {
+  display: flex;
+}
+
+#presets-section {
+  width: available;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#presets-section > div {
+  margin: 25px;
+  width: 260px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+#presets-container {
+  background-color: lightcoral;
+  overflow-y: scroll;
+}
+
+#presets-container > button {
+  margin: 1px 4px;
+}
+
+#presets-menu {
+  background-color: brown;
+  align-items: center;
+  justify-content: center;
+}
+
+#presets-menu > *:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+#registers-grid {
+  background-color: aqua;
+  width: available;
+  height: 100vh;
+  display: grid;
+  column-gap: 40px;
+}
+
+#registers-grid > div {
+  background-color: #c47373;
+  grid-template-columns: 40px 40px 40px 40px 40px 40px;
+  grid-template-rows: 60px 60px 60px 60px 60px 50px 60px;
+  display: grid;
+
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+#left-side {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  justify-content: right;
+}
+
+#right-side {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-content: left;
+}
+
+.handle-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.handle-div > button {
+  width: 40px;
+  height: 40px;
+}
+
+.handle-div > label {
+  height: 20px;
+  font-size: 8px;
+  text-align: center;
+}
