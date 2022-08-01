@@ -50,51 +50,51 @@
   },
   "right": {
     "1": {
-      "1": "Oberwerk ventil",
-      "2": "Principal 16",
-      "3": "Posaune 32",
-      "4": "Violon 16",
-      "5": "Mixtur 4",
-      "6": "Principal 8"
+      "1": "Rohr-Flaute 8",
+      "2": "Unda maris 8",
+      "3": "Bordun Flaute 16",
+      "4": "Major-Bass 32",
+      "5": "Sub-Bass 16",
+      "6": "Ober ventil"
     },
     "2": {
       "1": "Pedal ventil",
-      "2": "Octave 8",
-      "3": "Posaune 16",
-      "4": "Principal 8",
-      "5": "Sesquialtera 2",
-      "6": "Octave 4"
+      "2": "Flaute minor 4",
+      "3": "Trinuna 8",
+      "4": "Salicet 16",
+      "5": "Violon-Bass 16",
+      "6": "Quintadena 16"
     },
     "3": {
-      "1": "Pedal",
-      "2": "Octave",
-      "3": "Posaue",
-      "4": "Princl",
-      "5": "Sesqu",
-      "6": "Octave"
+      "1": "Spitz-Flaute 4",
+      "2": "Vox humana 8",
+      "3": "Quintadena 16",
+      "4": "GH Quinte 6",
+      "5": "Salicet 16",
+      "6": "HM ventil"
     },
     "4": {
-      "1": "Pedal",
-      "2": "Octave",
-      "3": "Posaue",
-      "4": "Princl",
-      "5": "Sesqu",
-      "6": "Octave"
+      "1": "Quinte 3",
+      "2": "Gems-Horn 8",
+      "3": "Flaute major 8",
+      "4": "Pauken",
+      "5": "Flaut 8",
+      "6": "RP ventil"
     },
     "5": {
-      "1": "Pedal",
-      "2": "Octave",
-      "3": "Posaue",
-      "4": "Princl",
-      "5": "Sesqu",
-      "6": "Octave"
+      "1": "Quinta 1 1/2",
+      "2": "Nachthorn 4",
+      "3": "Salicet 8",
+      "4": "Motor",
+      "5": "Licht",
+      "6": "Rohr ventil"
     },
     "7": {
-      "2": "Octave",
-      "3": "Posaue",
-      "4": "Princl",
-      "5": "Sesqu",
-      "6": "Octave"
+      "2": "Amabile 8",
+      "3": "Allemande 8",
+      "4": "Quintadena 8",
+      "5": "Quinte 3",
+      "6": "Cimbel II"
     }
   }
 }

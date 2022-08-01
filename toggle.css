@@ -7,23 +7,23 @@
 .state-switch > label {
   cursor: pointer;
   text-indent: -9999px;
-  width: 100px;
-  height: 40px;
+  width: 200px;
+  height: 80px;
   background: #efcac2;
   display: block;
-  border-radius: 100px;
+  border-radius: 200px;
   position: relative;
 }
 
 .state-switch > label:after {
   content: "";
   position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 30px;
-  height: 30px;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
   background: #fff;
-  border-radius: 90px;
+  border-radius: 180px;
   transition: 0.3s;
 }
 
@@ -33,10 +33,10 @@
 }
 
 .state-switch > input:checked + label:after {
-  left: calc(100% - 5px);
+  left: calc(100% - 10px);
   transform: translateX(-100%);
 }
 
 .state-switch > label:active:after {
-  width: 55px;
+  width: 110px;
 }

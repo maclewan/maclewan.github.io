@@ -1,15 +1,22 @@
-/*body {*/
-/*  background-color: lightblue;*/
-/*}*/
+html,body {
+   all: unset;
+   height: 100%;
+   width: 100%;
+}
 
-button {
-  font-size: 26px;
+button, label, input {
+  font-size: 40px;
+}
+
+input {
+  height: 51px;
 }
 
 nav {
   background-color: lightgreen;
   height: fit-content;
-  padding: 20px;
+
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,8 +24,8 @@ nav {
 }
 
 nav > button {
-  width: 400px;
-  margin: 10px;
+  width: 80vw;
+  margin: 1vw;
 }
 
 #flex-container {
@@ -27,16 +34,16 @@ nav > button {
 
 #presets-section {
   width: available;
-  height: 500px;
+  height: 30vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 #presets-section > div {
-  margin: 50px;
-  width: 540px;
-  height: 400px;
+  margin: 10px;
+  width: 1080px;
+  height: 25vh;
   display: flex;
   flex-direction: column;
 }
@@ -47,7 +54,7 @@ nav > button {
 }
 
 #presets-container > button {
-  margin: 2px 8px;
+  margin: 4px 15px;
 }
 
 #presets-menu {
@@ -56,26 +63,41 @@ nav > button {
   justify-content: center;
 }
 
-#presets-menu > *:not(:last-child) {
-    margin-bottom: 5px;
+#presets-menu > button, input {
+  width: 40vw;
 }
 
-#registers-grid {
+#presets-menu > *:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+
+
+#registers-flex {
   background-color: aqua;
   width: available;
-  height: 100vh;
-  display: grid;
-  column-gap: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  column-gap: 160px;
+  padding: 10px;
+
 }
 
-#registers-grid > div {
+#coples {
+  background-color: black;
+  height: 100px;
+  width: 100vw;
+}
+
+.register-panel {
   background-color: #c47373;
-  grid-template-columns: 80px 80px 80px 80px 80px 80px;
-  grid-template-rows: 120px 120px 120px 120px 120px 100px 120px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.5fr 1fr;
   display: grid;
 
-  column-gap: 10px;
-  row-gap: 10px;
+  column-gap: 20px;
+  row-gap: 20px;
 }
 
 #left-side {
@@ -94,15 +116,18 @@ nav > button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
+  min-height: 0;
 }
 
 .handle-div > button {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  aspect-ratio : 1 / 1
 }
 
 .handle-div > label {
-  height: 40px;
-  font-size: 16px;
+  height: 80px;
+  font-size: 32px;
   text-align: center;
+  word-wrap: break-word;
 }
