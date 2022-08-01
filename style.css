@@ -179,6 +179,19 @@ menu > button {
 
 @media screen and (min-width:1100px) {
 
+  menu {
+    display: none;
+  }
+
+  menu > button {
+    width: 12vw;
+  }
+
+  nav > button {
+    width: 14vw;
+    margin: 0
+  }
+
   #flex-container {
     flex-direction: row;
     align-content: center;

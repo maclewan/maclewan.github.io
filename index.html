@@ -10,7 +10,7 @@
     <nav>
         <button onclick="toggleMenu()">Menu</button>
     </nav>
-    <menu id="menu" style="display: none">
+    <menu id="menu_mobile" style="display: none">
         <button>Watch tutorial</button>
         <button>Load config *.englerjson file</button>
         <button>Save config *.englerjson file</button>
@@ -19,26 +19,30 @@
     </menu>
     <div id="flex-container">
         <div id="presets-section">
-        <div id="presets-container">
-            <button onclick="clickedPreset(this)">New preset 1</button>
-            <button onclick="clickedPreset(this)">New preset 2</button>
-        </div>
-        <div id="presets-menu">
-            <button>Add empty above</button>
-            <button>Add empty below</button>
-            <input type="text" id="preset-name-input" value="New preset 1">
-            <button>Delete preset</button>
-            <div id="notation-mode" class="state-switch">
-                <input type="checkbox" id="switch" />
-                <label for="switch">Toggle</label>
+            <menu id="menu_desktop" style="display: none">
+            <button>Watch tutorial</button>
+            <button>Load config *.englerjson file</button>
+            <button>Save config *.englerjson file</button>
+            <button>Generate PDF file</button>
+            <button>Clear all</button>
+        </menu>
+            <div id="presets-container">
+                <button onclick="clickedPreset(this)">New preset 1</button>
+                <button onclick="clickedPreset(this)">New preset 2</button>
             </div>
-            <label id="state">State mode / Diff mode</label>
+            <div id="presets-menu">
+                <button>Add empty above</button>
+                <button>Add empty below</button>
+                <input type="text" id="preset-name-input" value="New preset 1">
+                <button>Delete preset</button>
+                <div id="notation-mode" class="state-switch">
+                    <input type="checkbox" id="switch" />
+                    <label for="switch">Toggle</label>
+                </div>
+                <label id="state">State mode / Diff mode</label>
 
-
-
+            </div>
         </div>
-
-    </div>
         <div id="registers-flex">
         <div id="left-side" class="register-panel"></div>
         <div id="coples">

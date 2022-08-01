@@ -79,7 +79,9 @@ async function main() {
 main()
 
 function toggleMenu() {
-    let menu = document.getElementById("menu");
+    let id = window.matchMedia('screen and (min-width:1100px)').matches ? "menu_desktop" : "menu_mobile"
+    let menu = document.getElementById(id);
+    console.log(id)
     if (menu.style.display === "none"){
         menu.style.display = "flex"
     }
@@ -109,10 +111,7 @@ function handleClicked(button) {
         else {
             button.innerText = ''
         }
-
     }
-
-
 }
 
 function clickedPreset(button) {
