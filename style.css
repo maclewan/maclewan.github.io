@@ -5,7 +5,7 @@ html,body {
 }
 
 button, label, input {
-  font-size: 40px;
+  font-size: 3.5vw;
 }
 
 input {
@@ -89,7 +89,7 @@ menu > button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  column-gap: 160px;
+  column-gap: 10px;
   padding: 10px;
 
 }
@@ -133,7 +133,7 @@ menu > button {
 
 .handle-div > label {
   height: 80px;
-  font-size: 32px;
+  font-size: 3.25vw;
   text-align: center;
   word-wrap: break-word;
 }
@@ -161,11 +161,48 @@ menu > button {
 .cople-div > button {
   width: 30vw;
   height: 10vw;
+  font-size: 8vw;
 }
 
 .cople-div > label {
   height: 80px;
-  font-size: 32px;
+  font-size: 3.25vw;
   text-align: center;
   word-wrap: break-word;
 }
+
+
+@media screen and (min-width:1100px) {
+  button, label, input {
+    font-size: 2vw;
+  }
+
+  #registers-flex {
+    flex-direction: row;
+  }
+
+  #coples {
+    padding: 5px;
+    width: fit-content;
+    flex-direction: column;
+  }
+
+  .cople-div > button {
+    width: 6vw;
+    height: 6vw;
+    font-size: 5vw;
+  }
+
+  .handle-div > button {
+    font-size: 5vw;
+  }
+
+  .cople-div > label {
+    font-size: 1.5vw;
+  }
+
+  .handle-div > label {
+    font-size: 1.5vw;
+  }
+}
+
