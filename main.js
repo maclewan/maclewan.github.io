@@ -23,8 +23,12 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
     div.style.gridRowStart = `${j}`
 
     let newButton = document.createElement('button');
+    newButton.onclick = function() {handleClicked(newButton)}
     newButton.style.gridColumnStart = `${i}`
     newButton.style.gridRowStart = `${j}`
+
+    let buttonText = document.createTextNode('')
+    newButton.appendChild(buttonText)
 
     let label = document.createElement('label');
 
@@ -81,4 +85,31 @@ function toggleMenu() {
     else {
         menu.style.display = "none"
     }
+}
+
+function handleClicked(button) {
+    if (!document.getElementById('switch').checked){
+        // state mode
+        if(button.innerText === 'X') {
+            button.innerText = ''
+        }
+        else {
+            button.innerText = 'X'
+        }
+    }
+    else {
+        // diff mode
+        if(button.innerText === '') {
+            button.innerText = '+'
+        }
+        else if (button.innerText === '+') {
+            button.innerText = '-'
+        }
+        else {
+            button.innerText = ''
+        }
+
+    }
+
+
 }
