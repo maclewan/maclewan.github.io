@@ -34,7 +34,7 @@ nav > button {
 
 #presets-section {
   width: available;
-  height: 30vh;
+  height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -43,7 +43,7 @@ nav > button {
 #presets-section > div {
   margin: 10px;
   width: 1080px;
-  height: 25vh;
+  height: 450px;
   display: flex;
   flex-direction: column;
 }
@@ -71,8 +71,6 @@ nav > button {
     margin-bottom: 10px;
 }
 
-
-
 #registers-flex {
   background-color: aqua;
   width: available;
@@ -84,16 +82,12 @@ nav > button {
 
 }
 
-#coples {
-  background-color: black;
-  height: 100px;
-  width: 100vw;
-}
+
 
 .register-panel {
   background-color: #c47373;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.25fr 1fr;
   display: grid;
 
   column-gap: 20px;
@@ -126,6 +120,38 @@ nav > button {
 }
 
 .handle-div > label {
+  height: 80px;
+  font-size: 32px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+#coples {
+  background-color: #607c58;
+  height: fit-content;
+  width: 100%;
+  padding-top: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.cople-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  margin: 10px
+}
+
+.cople-div > button {
+  width: 30vw;
+  height: 10vw;
+}
+
+.cople-div > label {
   height: 80px;
   font-size: 32px;
   text-align: center;
