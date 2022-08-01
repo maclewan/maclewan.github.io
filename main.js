@@ -3,6 +3,7 @@ let leftPanel = document.getElementById('left-side')
 let rightPanel = document.getElementById('right-side')
 let leftPanelButtons = []
 let rightPanelButtons = []
+let currentPreset = 0
 
 function setData(dataNew) {
     data = dataNew
@@ -72,7 +73,7 @@ function generateMainRegisters() {
 async function main() {
     await loadData()
     generateMainRegisters()
-    console.log(data)
+    selectPreset(0)
 }
 
 main()
@@ -111,5 +112,21 @@ function handleClicked(button) {
 
     }
 
+
+}
+
+function clickedPreset(button) {
+    let presetButtonsList = Array.from(document.getElementById('presets-container').children)
+    let index = presetButtonsList.indexOf(button)
+    currentPreset = index
+    return selectPreset(currentPreset)
+}
+
+function selectPreset(index) {
+    let presetButtonsList = document.getElementById('presets-container').children
+    for (let item of presetButtonsList){
+        item.style.backgroundColor = 'white'
+    }
+    presetButtonsList[index].style.backgroundColor = '#B3B3B3'
 
 }

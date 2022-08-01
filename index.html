@@ -12,23 +12,21 @@
     </nav>
     <menu id="menu" style="display: none">
         <button>Watch tutorial</button>
-        <button>Load *.englerson file</button>
-        <button>Save *.englerson file</button>
+        <button>Load config *.englerjson file</button>
+        <button>Save config *.englerjson file</button>
         <button>Generate PDF file</button>
         <button>Clear all</button>
     </menu>
-    <div id="presets-section">
+    <div id="flex-container">
+        <div id="presets-section">
         <div id="presets-container">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-
+            <button onclick="clickedPreset(this)">New preset 1</button>
+            <button onclick="clickedPreset(this)">New preset 2</button>
         </div>
         <div id="presets-menu">
             <button>Add empty above</button>
             <button>Add empty below</button>
-            <input type="text" id="preset-name-input">
+            <input type="text" id="preset-name-input" value="New preset 1">
             <button>Delete preset</button>
             <div id="notation-mode" class="state-switch">
                 <input type="checkbox" id="switch" />
@@ -41,8 +39,7 @@
         </div>
 
     </div>
-
-    <div id="registers-flex">
+        <div id="registers-flex">
         <div id="left-side" class="register-panel"></div>
         <div id="coples">
             <div id="ow-copel" class="cople-div">
@@ -64,6 +61,8 @@
         </div>
         <div id="right-side" class="register-panel"></div>
     </div>
+    </div>
+
 
 
 </body>

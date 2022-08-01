@@ -42,6 +42,8 @@ menu > button {
 
 #flex-container {
   display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 #presets-section {
@@ -76,7 +78,7 @@ menu > button {
 }
 
 #presets-menu > button, input {
-  width: 40vw;
+  width: 80%;
 }
 
 #presets-menu > *:not(:last-child) {
@@ -99,9 +101,11 @@ menu > button {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.25fr 1fr;
   display: grid;
+  max-width: 1100px;
+  max-height: 1550px;
 
-  column-gap: 20px;
-  row-gap: 20px;
+  column-gap: 15px;
+  row-gap: 15px;
 }
 
 #left-side {
@@ -128,11 +132,11 @@ menu > button {
   width: 100%;
   aspect-ratio : 1 / 1;
   font-size: 8vw;
-
+  text-align: center;
 }
 
 .handle-div > label {
-  height: 80px;
+  height: 7vw;
   font-size: 3.25vw;
   text-align: center;
   word-wrap: break-word;
@@ -162,6 +166,7 @@ menu > button {
   width: 30vw;
   height: 10vw;
   font-size: 8vw;
+  text-align: center;
 }
 
 .cople-div > label {
@@ -173,36 +178,87 @@ menu > button {
 
 
 @media screen and (min-width:1100px) {
+
+  #flex-container {
+    flex-direction: row;
+    align-content: center;
+  }
+
+  #presets-section {
+    flex-direction: column;
+    width: 15vw;
+    height: 68vh;
+  }
+
+  #presets-section > div {
+    width: 14vw;
+    height: 30vh;
+  }
+
   button, label, input {
-    font-size: 2vw;
+    font-size: 1.2vw;
   }
 
   #registers-flex {
     flex-direction: row;
+    max-height: 95vh;
   }
 
   #coples {
-    padding: 5px;
+    padding: 0 5px;
     width: fit-content;
     flex-direction: column;
+  }
+
+  .cople-div {
+    margin: 5px;
+    height: 30vh;
+    justify-content: center;
   }
 
   .cople-div > button {
     width: 6vw;
     height: 6vw;
-    font-size: 5vw;
+    font-size: 4.5vw;
   }
 
   .handle-div > button {
-    font-size: 5vw;
+    font-size: 4.5vw;
   }
 
   .cople-div > label {
-    font-size: 1.5vw;
+    font-size: 1.4vw;
+    height: 3.5vw;
   }
 
   .handle-div > label {
-    font-size: 1.5vw;
+    font-size: 1.4vw;
+    height: 3.25vw;
   }
 }
 
+@media screen and (min-width:1600px) {
+  button, label, input {
+    font-size: 19px;
+  }
+
+  .cople-div > button {
+    font-size: 60px;
+  }
+
+  .handle-div > button {
+    font-size: 60px;
+  }
+
+  .cople-div > label {
+    font-size: 19px;
+    height: 2.8vw;
+
+  }
+
+  .handle-div > label {
+    font-size: 19px;
+    height: 2.8vw;
+
+  }
+}
