@@ -9,7 +9,7 @@ button, label, input {
 }
 
 input {
-  height: 51px;
+  height: 5vw;
 }
 
 nav {
@@ -48,7 +48,7 @@ menu > button {
 
 #presets-section {
   width: available;
-  height: 500px;
+  height: 42vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -57,7 +57,7 @@ menu > button {
 #presets-section > div {
   margin: 10px;
   width: 1080px;
-  height: 450px;
+  height: 40vh;
   display: flex;
   flex-direction: column;
 }

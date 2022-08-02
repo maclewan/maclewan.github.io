@@ -1,14 +1,30 @@
-let data = []
+let stopsData = []
 let leftPanel = document.getElementById('left-side')
 let rightPanel = document.getElementById('right-side')
+let presetButtonsList = document.getElementById('presets-container').children
 let leftPanelButtons = []
 let rightPanelButtons = []
+let presetsData = []
 let currentPreset = 0
 
-let nameInput =
+function newPresetTable() {
+    return {
+        left: Array.from(Array(7 + 1), () => new Array(6 + 1).fill(false)),
+        right: Array.from(Array(7 + 1), () => new Array(6 + 1).fill(false)),
+        coples: {
+            ow: false,
+            rp: false
+        }
+    }
+}
+
+presetsData.push(newPresetTable())
+
+let nameInput = document.getElementById('preset-name-input')
+nameInput.addEventListener('change', updatePresetName)
 
 function setData(dataNew) {
-    data = dataNew
+    stopsData = dataNew
 }
 
 async function loadData() {
@@ -20,13 +36,14 @@ async function loadData() {
 
 function generateCell(i, j, panel, panelButtons, dataSide) {
 
+    let side = (panel === leftPanel) ? 'left' : 'right'
     let div = document.createElement('div');
     div.className = 'handle-div'
     div.style.gridColumnStart = `${i}`
     div.style.gridRowStart = `${j}`
 
     let newButton = document.createElement('button');
-    newButton.onclick = function() {handleClicked(newButton)}
+    newButton.onclick = function() {handleClicked(newButton, side, j, i)}
     newButton.style.gridColumnStart = `${i}`
     newButton.style.gridRowStart = `${j}`
 
@@ -48,26 +65,26 @@ function generateMainRegisters() {
     // left side
     for (let i = 1; i < 7; i++) {
         for (let j = 1; j < 6; j++){
-            generateCell(i, j, leftPanel, leftPanelButtons, data.left)
+            generateCell(i, j, leftPanel, leftPanelButtons, stopsData.left)
         }
     }
 
     // left positiv section
     for (let p = 1; p < 6; p++) {
-        generateCell(p, 7, leftPanel, leftPanelButtons, data.left)
+        generateCell(p, 7, leftPanel, leftPanelButtons, stopsData.left)
 
     }
 
     // right side
     for (let i = 1; i < 7; i++) {
         for (let j = 1; j < 6; j++){
-            generateCell(i, j, rightPanel, rightPanelButtons, data.right)
+            generateCell(i, j, rightPanel, rightPanelButtons, stopsData.right)
         }
     }
 
     //right positiv section
     for (let p = 2; p < 7; p++) {
-        generateCell(p, 7, rightPanel, rightPanelButtons, data.right)
+        generateCell(p, 7, rightPanel, rightPanelButtons, stopsData.right)
     }
 
 }
@@ -92,17 +109,53 @@ function toggleMenu() {
     }
 }
 
-function handleClicked(button) {
+function handleClicked(button, side, row, column) {
     if (!document.getElementById('switch').checked){
         // state mode
         if(button.innerText === 'X') {
             button.innerText = ''
+            presetsData[currentPreset][side][row][column] = false
         }
         else {
             button.innerText = 'X'
+            presetsData[currentPreset][side][row][column] = true
+
         }
     }
+
     else {
+        // todo
+        return none
+        // diff mode
+        if(button.innerText === '') {
+            button.innerText = '+'
+        }
+        else if (button.innerText === '+') {
+            button.innerText = '-'
+        }
+        else {
+            button.innerText = ''
+        }
+    }
+}
+
+function copelClicked(button, name) {
+    if (!document.getElementById('switch').checked){
+        // state mode
+        if(button.innerText === 'X') {
+            button.innerText = ''
+            presetsData[currentPreset].coples[name] = false
+        }
+        else {
+            button.innerText = 'X'
+            presetsData[currentPreset].coples[name] = true
+
+        }
+    }
+
+    else {
+        // todo
+        return null
         // diff mode
         if(button.innerText === '') {
             button.innerText = '+'
@@ -117,17 +170,19 @@ function handleClicked(button) {
 }
 
 function clickedPreset(button) {
-    let presetButtonsList = Array.from(document.getElementById('presets-container').children)
-    let index = presetButtonsList.indexOf(button)
-    currentPreset = index
+    currentPreset = Array.from(presetButtonsList).indexOf(button)
     return selectPreset(currentPreset)
 }
 
 function selectPreset(index) {
-    let presetButtonsList = document.getElementById('presets-container').children
     for (let item of presetButtonsList){
         item.style.backgroundColor = 'white'
     }
-    presetButtonsList[index].style.backgroundColor = '#B3B3B3'
+    button = presetButtonsList[index]
+    button.style.backgroundColor = '#B3B3B3'
+    nameInput.value = button.textContent
+}
 
+function updatePresetName(e) {
+    presetButtonsList[currentPreset].textContent = e.target.value
 }
