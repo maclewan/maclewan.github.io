@@ -192,6 +192,8 @@ menu > button {
     margin: 0
   }
 
+
+
   #flex-container {
     flex-direction: row;
     align-content: center;
@@ -199,13 +201,22 @@ menu > button {
 
   #presets-section {
     flex-direction: column;
+    justify-items: end;
     width: 15vw;
-    height: 68vh;
+    height: 95vh;
   }
 
   #presets-section > div {
     width: 14vw;
-    height: 30vh;
+    height: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*min-height: 300px;*/
+  }
+
+  #presets-container {
+    min-height: 25vh;
+    flex: 1;
   }
 
   button, label, input {

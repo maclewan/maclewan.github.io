@@ -5,6 +5,8 @@ let leftPanelButtons = []
 let rightPanelButtons = []
 let currentPreset = 0
 
+let nameInput =
+
 function setData(dataNew) {
     data = dataNew
 }
