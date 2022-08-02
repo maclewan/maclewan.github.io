@@ -6,6 +6,7 @@ html,body {
 
 button, label, input {
   font-size: 3.5vw;
+  padding: 0
 }
 
 input {
@@ -22,9 +23,9 @@ nav > button {
 }
 
 menu {
-  background-color: lightgreen;
+  /*background-color: lightgreen;*/
   height: fit-content;
-
+  border: 1px solid black;
 
   padding: 10px;
   flex-direction: column;
@@ -63,7 +64,8 @@ menu > button {
 }
 
 #presets-container {
-  background-color: lightcoral;
+  /*background-color: lightcoral;*/
+  border: 1px solid black;
   overflow-y: scroll;
 }
 
@@ -72,7 +74,8 @@ menu > button {
 }
 
 #presets-menu {
-  background-color: brown;
+  /*background-color: brown;*/
+  border: 1px solid black;
   align-items: center;
   justify-content: center;
 }
@@ -86,18 +89,21 @@ menu > button {
 }
 
 #registers-flex {
-  background-color: aqua;
+  /*background-color: aqua;*/
+  border: 1px solid black;
   width: available;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  column-gap: 10px;
-  padding: 10px;
+  column-gap: 0;
+  padding: 0;
+  margin: 15px;
 
 }
 
 .register-panel {
-  background-color: #c47373;
+  padding: 10px;
+  /*background-color: #c47373;*/
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.25fr 1fr;
   display: grid;
@@ -143,10 +149,11 @@ menu > button {
 }
 
 #coples {
-  background-color: #607c58;
+  /*background-color: #607c58;*/
   height: fit-content;
   width: 100%;
   padding-top: 40px;
+  padding-bottom: 30px;
 
   display: flex;
   flex-direction: row;
@@ -159,7 +166,9 @@ menu > button {
   justify-content: center;
   min-width: 0;
   min-height: 0;
-  margin: 10px
+  padding: 10px;
+  margin: 0 5px;
+  border: 1px solid black;
 }
 
 .cople-div > button {
@@ -170,7 +179,7 @@ menu > button {
 }
 
 .cople-div > label {
-  height: 80px;
+  height: 4vw;
   font-size: 3.25vw;
   text-align: center;
   word-wrap: break-word;
@@ -181,6 +190,7 @@ menu > button {
 
   menu {
     display: none;
+    margin: 10px;
   }
 
   menu > button {
@@ -236,13 +246,19 @@ menu > button {
   #coples {
     padding: 0 5px;
     width: fit-content;
+    height: 90vh;
     flex-direction: column;
   }
 
+  .cople-spacer {
+    flex: 1;
+  }
+
   .cople-div {
-    margin: 5px;
-    height: 30vh;
+    padding: 5px;
+    height: 12vh;
     justify-content: center;
+    margin: 5px 0;
   }
 
   .cople-div > button {

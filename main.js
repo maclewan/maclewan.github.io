@@ -107,6 +107,7 @@ async function main() {
     await loadData()
     generateMainRegisters()
     selectPreset(0)
+    toggleMenu()
 }
 
 main()
