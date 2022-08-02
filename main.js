@@ -19,8 +19,20 @@ let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
 
+main()
+
+async function main() {
+    await loadData()
+    generateMainRegisters()
+    setupPresets()
+    disableRegisters()
+    clickedPreset(presetButtonsList[0])
+    setMediaListener()
+    toggleMenu(menuButton)
+}
+
 function newPresetTable() {
-    return {
+    let emptyPreset = {
         left: Array.from(Array(7 + 1), () => new Array(6 + 1).fill(false)),
         right: Array.from(Array(7 + 1), () => new Array(6 + 1).fill(false)),
         coples: {
@@ -28,12 +40,32 @@ function newPresetTable() {
             rp: false
         }
     }
+    for (let i=1; i<6; i++) {
+        //ventils
+        emptyPreset.left[i][1] = true
+        emptyPreset.right[i][6] = true
+    }
+    emptyPreset.right[5][5] = true //licht
+    emptyPreset.right[5][4] = true //motor
+    return emptyPreset
 }
 
-presetsData.push(newPresetTable())
+function disableRegisters() {
+    let emptyHandleId = generateButtonId('left', 5, 2)
+    let calcantHandleId = generateButtonId('left', 5, 3)
+    let paukenHandleId = generateButtonId('right', 4, 4)
+    document.getElementById(emptyHandleId).disabled = true;
+    document.getElementById(calcantHandleId).disabled = true;
+    document.getElementById(paukenHandleId).disabled = true;
+}
 
-let nameInput = document.getElementById('preset-name-input')
-nameInput.addEventListener('change', updatePresetName)
+function setupPresets() {
+    presetsData.push(newPresetTable())
+    let nameInput = document.getElementById('preset-name-input')
+    nameInput.addEventListener('change', updatePresetName)
+
+
+}
 
 function setData(dataNew) {
     stopsData = dataNew
@@ -46,8 +78,8 @@ async function loadData() {
     .catch(error => console.log(error));
 }
 
-function generateButtonId(side, j, i) {
-    return `handle-${side}-${j}-${i}`
+function generateButtonId(side, row, column) {
+    return `handle-${side}-${row}-${column}`
 }
 
 function generateCell(i, j, panel, panelButtons, dataSide) {
@@ -103,16 +135,6 @@ function generateMainRegisters() {
     }
 
 }
-
-async function main() {
-    await loadData()
-    generateMainRegisters()
-    selectPreset(0)
-    setMediaListener()
-    toggleMenu(menuButton)
-}
-
-main()
 
 function toggleMenu(menuButton) {
     const matchMedia = window.matchMedia('screen and (min-width:1100px)')
@@ -217,6 +239,9 @@ function selectPreset(index) {
 }
 
 function clearPresetClicked(){
+    if (!confirm("Are you sure? All data in this preset will be cleared.")) {
+        return;
+    }
     presetsData[currentPreset] = newPresetTable()
     presetButtonsList[currentPreset].click()
 }
@@ -283,6 +308,10 @@ function deletePresetClicked() {
         alert('Cannot delete only remaining preset!')
         return null;
     }
+    if (!confirm("Are you sure? All data of this preset will be lost.")) {
+        return;
+    }
+
     let delta = oldIndex === 0 ? 1 : -1
     presetButtonsList[oldIndex + delta].click()
     presetsData = presetsData.filter((e, i) => i !== oldIndex)
