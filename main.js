@@ -7,6 +7,10 @@ Array.prototype.insert = function(index) {
 let stopsData = []
 let leftPanel = document.getElementById('left-side')
 let rightPanel = document.getElementById('right-side')
+let coplesButtons = {
+    ow: document.getElementById('ow-copel'),
+    rp: document.getElementById('rp-copel')
+}
 let presetsContainer = document.getElementById('presets-container')
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
@@ -41,6 +45,10 @@ async function loadData() {
     .catch(error => console.log(error));
 }
 
+function generateButtonId(side, j, i) {
+    return `handle-${side}-${j}-${i}`
+}
+
 function generateCell(i, j, panel, panelButtons, dataSide) {
 
     let side = (panel === leftPanel) ? 'left' : 'right'
@@ -51,8 +59,7 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
 
     let newButton = document.createElement('button');
     newButton.onclick = function() {handleClicked(newButton, side, j, i)}
-    newButton.style.gridColumnStart = `${i}`
-    newButton.style.gridRowStart = `${j}`
+    newButton.id = generateButtonId(side, j, i)
 
     let buttonText = document.createTextNode('')
     newButton.appendChild(buttonText)
@@ -130,20 +137,20 @@ function handleClicked(button, side, row, column) {
         }
     }
 
-    else {
-        // todo
-        return none
-        // diff mode
-        if(button.innerText === '') {
-            button.innerText = '+'
-        }
-        else if (button.innerText === '+') {
-            button.innerText = '-'
-        }
-        else {
-            button.innerText = ''
-        }
-    }
+    // else {
+    //     // todo or maybe not, see below
+    //     return none
+    //     // diff mode
+    //     if(button.innerText === '') {
+    //         button.innerText = '+'
+    //     }
+    //     else if (button.innerText === '+') {
+    //         button.innerText = '-'
+    //     }
+    //     else {
+    //         button.innerText = ''
+    //     }
+    // }
 }
 
 function copelClicked(button, name) {
@@ -159,39 +166,65 @@ function copelClicked(button, name) {
 
         }
     }
-
-    else {
-        // todo
-        return null
-        // diff mode
-        if(button.innerText === '') {
-            button.innerText = '+'
-        }
-        else if (button.innerText === '+') {
-            button.innerText = '-'
-        }
-        else {
-            button.innerText = ''
-        }
-    }
+    // else {
+    //     // todo or maybe not, as it will complicate usage a lot
+    //     return null
+    //     // diff mode
+    //     if(button.innerText === '') {
+    //         button.innerText = '+'
+    //     }
+    //     else if (button.innerText === '+') {
+    //         button.innerText = '-'
+    //     }
+    //     else {
+    //         button.innerText = ''
+    //     }
+    // }
 }
 
 function clickedPreset(button) {
     currentPreset = Array.from(presetButtonsList).indexOf(button)
-    return selectPreset(currentPreset)
+    updateBoxesState(currentPreset)
+    selectPreset(currentPreset)
+
 }
 
 function selectPreset(index) {
     for (let item of presetButtonsList){
         item.style.backgroundColor = 'white'
     }
-    button = presetButtonsList[index]
+    let button = presetButtonsList[index]
     button.style.backgroundColor = '#B3B3B3'
     nameInput.value = button.textContent
 }
 
+function updateBoxesState(index){
+    let data = presetsData[index]
+    setButtonState(coplesButtons.ow, data.coples.ow)
+    setButtonState(coplesButtons.rp, data.coples.rp)
+
+    leftPanelButtons.forEach(x => setButtonState(x, false))
+    rightPanelButtons.forEach(x => setButtonState(x, false))
+
+    Array('left', 'right').forEach(side => data[side].forEach((x, j) => x.forEach((y, i) => {
+         if (y===true){
+            let button = document.getElementById(generateButtonId(side, j, i))
+            if (!button) {
+                console.log('Error!')
+            }
+            else {
+                setButtonState(button, true)
+            }
+        }
+    })))
+}
+
 function updatePresetName(e) {
     presetButtonsList[currentPreset].textContent = e.target.value
+}
+
+function setButtonState(button, bool) {
+    button.textContent = bool ? 'X' : ''
 }
 
 function addPresetClicked(above) {
@@ -207,7 +240,6 @@ function addPresetClicked(above) {
     let button = document.createElement('button')
     button.innerText = newName
     button.onclick = function() {clickedPreset(this)}
-
     if (above) {
         presetButtonsList[currentPreset].before(button)
         presetsData.insert(currentPreset, newPresetTable())
@@ -215,8 +247,9 @@ function addPresetClicked(above) {
     }
     else {
         presetButtonsList[currentPreset].after(button)
-        presetsData.insert(currentPreset, newPresetTable())
+        presetsData.insert(currentPreset + 1, newPresetTable())
     }
+
 
 
 

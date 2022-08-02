@@ -5,6 +5,8 @@
     <title>e-registrant</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toggle.css">
+    <link rel="stylesheet" href="disabled.css">
+
 </head>
 <body>
     <nav>
@@ -45,16 +47,16 @@
         <div id="registers-flex">
         <div id="left-side" class="register-panel"></div>
         <div id="coples">
-            <div id="ow-copel" class="cople-div">
-                <button onclick="copelClicked(this, 'ow')">
+            <div class="cople-div">
+                <button id="ow-copel" onclick="copelClicked(this, 'ow')">
 
                 </button>
                 <label>
                     OW/HM
                 </label>
             </div>
-            <div id="rp-copel" class="cople-div">
-                <button onclick="copelClicked(this, 'rp')">
+            <div class="cople-div">
+                <button id="rp-copel" onclick="copelClicked(this, 'rp')">
 
                 </button>
                 <label>
