@@ -4,6 +4,8 @@ html,body {
    width: 100%;
   -webkit-appearance: unset;
   -webkit-border-radius: unset;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
 }
 

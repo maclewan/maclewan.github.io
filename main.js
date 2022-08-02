@@ -107,12 +107,12 @@ async function main() {
     await loadData()
     generateMainRegisters()
     selectPreset(0)
-    toggleMenu()
+    await toggleMenu()
 }
 
 main()
 
-function toggleMenu(menuButton) {
+async function toggleMenu(menuButton) {
     let id = window.matchMedia('screen and (min-width:1100px)').matches ? "menu_desktop" : "menu_mobile"
     let menu = document.getElementById(id);
     console.log(id)
@@ -194,10 +194,10 @@ function clickedPreset(button) {
 
 function selectPreset(index) {
     for (let item of presetButtonsList){
-        item.style.backgroundColor = 'white'
+        item.style.backgroundColor = 'buttonface'
     }
     let button = presetButtonsList[index]
-    button.style.backgroundColor = '#B3B3B3'
+    button.style.backgroundColor = '#d6d6d6'
     nameInput.value = button.textContent
 }
 
@@ -272,4 +272,36 @@ function deletePresetClicked() {
     presetButtonsList[oldIndex + delta].click()
     presetsData = presetsData.filter((e, i) => i !== oldIndex)
     presetButtonsList[oldIndex].parentNode.removeChild(presetButtonsList[oldIndex])
+}
+
+function saveConfigClicked() {
+    let fname = prompt("Provide file name:")
+    const file = new File([JSON.stringify(presetsData, null, '  ')], `${fname}.englerjson`, {
+            type: 'text/plain',
+        })
+    const link = document.createElement('a')
+    const url = URL.createObjectURL(file)
+
+    link.href = url
+    link.download = file.name
+    document.body.appendChild(link)
+    link.click()
+
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+}
+
+
+function loadConfigClicked() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.englerjson'
+    input.addEventListener('change', loadPickedFile)
+    input.click();
+}
+
+function loadPickedFile(e){
+    console.log(e.target.files[0].fullPath)
+    console.log(e.target.files[0].name)
+    console.log(e.target.value)
 }

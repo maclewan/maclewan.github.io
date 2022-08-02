@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>e-registrant</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="toggle.css">
     <link rel="stylesheet" href="disabled.css">
@@ -22,8 +23,8 @@
         <div id="presets-section">
             <menu id="menu_desktop" style="display: none">
                 <button>Watch tutorial</button>
-                <button>Load config *.englerjson file</button>
-                <button>Save config *.englerjson file</button>
+                <button onclick="loadConfigClicked()">Load config *.englerjson file</button>
+                <button onclick="saveConfigClicked()">Save config *.englerjson file</button>
                 <button>Generate PDF file</button>
 
             </menu>
