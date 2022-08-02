@@ -112,15 +112,17 @@ async function main() {
 
 main()
 
-function toggleMenu() {
+function toggleMenu(menuButton) {
     let id = window.matchMedia('screen and (min-width:1100px)').matches ? "menu_desktop" : "menu_mobile"
     let menu = document.getElementById(id);
     console.log(id)
     if (menu.style.display === "none"){
         menu.style.display = "flex"
+        menuButton.textContent = 'Hide Menu'
     }
     else {
         menu.style.display = "none"
+        menuButton.textContent = 'Show Menu'
     }
 }
 
@@ -199,6 +201,11 @@ function selectPreset(index) {
     nameInput.value = button.textContent
 }
 
+function clearPresetClicked(){
+    presetsData[currentPreset] = newPresetTable()
+    presetButtonsList[currentPreset].click()
+}
+
 function updateBoxesState(index){
     let data = presetsData[index]
     setButtonState(coplesButtons.ow, data.coples.ow)
@@ -221,6 +228,9 @@ function updateBoxesState(index){
 }
 
 function updatePresetName(e) {
+    if (e.target.value === ''){
+        e.target.value = 'Empty Name'
+    }
     presetButtonsList[currentPreset].textContent = e.target.value
 }
 

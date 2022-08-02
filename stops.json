@@ -1,7 +1,7 @@
 {
   "left": {
     "1": {
-      "1": "Ober ventil",
+      "1": "OW Ventil",
       "2": "Principal 16",
       "3": "Posaune 32",
       "4": "Violon 16",
@@ -9,15 +9,15 @@
       "6": "Principal 8"
     },
     "2": {
-      "1": "Ped ventil",
+      "1": "Ped Ventil",
       "2": "Octave 8",
       "3": "Posaune 16",
       "4": "Principal 8",
-      "5": "Sesquialtera II",
+      "5": "Sesq. II",
       "6": "Octave 4"
     },
     "3": {
-      "1": "HM ventil",
+      "1": "HM Ventil",
       "2": "Super-Octave 4",
       "3": "Trombet 8",
       "4": "Octave 4",
@@ -25,25 +25,25 @@
       "6": "Super-Octave 2"
     },
     "4": {
-      "1": "RP ventil",
+      "1": "RP Ventil",
       "2": "Mixtur V",
-      "3": "Glockenspiel",
+      "3": "Glocken-spiel 8",
       "4": "Super-Octave 2",
       "5": "Cimbel III",
-      "6": "Sedecima 1"
+      "6": "Sedec. 1"
     },
     "5": {
-      "1": "Rohr ventil",
+      "1": "RW Ventil",
       "2": "-",
       "3": "Calc. Glocke",
       "4": "Mixtur V",
       "5": "Trombet 8",
-      "6": "Chalumeau 8"
+      "6": "Chalum. 8"
     },
     "7": {
       "1": "Mixtur IV",
       "2": "Hautbois 8",
-      "3": "Super Octave 2",
+      "3": "Super-Octave 2",
       "4": "Octave 4",
       "5": "Principal 8"
     }
@@ -52,26 +52,26 @@
     "1": {
       "1": "Rohr-Flaute 8",
       "2": "Unda maris 8",
-      "3": "Bordun Flaute 16",
+      "3": "Bordun-Fl. 16",
       "4": "Major-Bass 32",
       "5": "Sub-Bass 16",
-      "6": "Ober ventil"
+      "6": "OW Ventil"
     },
     "2": {
-      "6": "Pedal ventil",
+      "6": "Ped Ventil",
       "1": "Flaute minor 4",
       "2": "Trinuna 8",
       "3": "Salicet 16",
       "4": "Violon-Bass 16",
-      "5": "Quintadena 16"
+      "5": "Quintad. 16"
     },
     "3": {
       "1": "Spitz-Flaute 4",
-      "2": "Vox humana 8",
-      "3": "Quintadena 16",
+      "2": "Vox hum. 8",
+      "3": "Quintad. 16",
       "4": "GH Quinte 6",
       "5": "Salicet 16",
-      "6": "HM ventil"
+      "6": "HM Ventil"
     },
     "4": {
       "1": "Quinte 3",
@@ -79,20 +79,20 @@
       "3": "Flaute major 8",
       "4": "Pauken",
       "5": "Flaut 8",
-      "6": "RP ventil"
+      "6": "RP Ventil"
     },
     "5": {
       "1": "Quinta 1 1/2",
-      "2": "Nachthorn 4",
+      "2": "Nacht-horn 4",
       "3": "Salicet 8",
       "4": "Motor",
       "5": "Licht",
-      "6": "Rohr ventil"
+      "6": "RW Ventil"
     },
     "7": {
-      "2": "Amabile 8",
-      "3": "Allemande 8",
-      "4": "Quintadena 8",
+      "2": "Fl. Amab. 8",
+      "3": "Fl. Allem. 8",
+      "4": "Quintad. 8",
       "5": "Quinte 3",
       "6": "Cimbel II"
     }
