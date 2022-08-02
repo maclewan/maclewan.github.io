@@ -249,9 +249,16 @@ function addPresetClicked(above) {
         presetButtonsList[currentPreset].after(button)
         presetsData.insert(currentPreset + 1, newPresetTable())
     }
+}
 
-
-
-
-
+function deletePresetClicked() {
+    let oldIndex = currentPreset
+    if (presetButtonsList.length === 0) {
+        // todo info
+        return null;
+    }
+    let delta = oldIndex === 0 ? 1 : -1
+    presetButtonsList[oldIndex + delta].click()
+    presetsData = presetsData.filter((e, i) => i !== oldIndex)
+    presetButtonsList[oldIndex].parentNode.removeChild(presetButtonsList[oldIndex])
 }
