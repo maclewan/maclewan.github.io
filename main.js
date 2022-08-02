@@ -365,6 +365,9 @@ function loadSelectedFile(e) {
     }
 }
 
-function aboutMeClicked() {
-
+function aboutClicked() {
+    alert("Created by Maciej Lewandowicz. " +
+        "Simple web app to simplify and potentially unify registration process " +
+        "for reconstructed Engler organ in Wroclaw. Main purpose is to make organist's and assistant's lives easier, " +
+        "and also learn little bit of JavaScript in real live case.")
 }
