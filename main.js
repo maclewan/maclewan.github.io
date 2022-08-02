@@ -11,6 +11,7 @@ let coplesButtons = {
     ow: document.getElementById('ow-copel'),
     rp: document.getElementById('rp-copel')
 }
+let menuButton = document.getElementById('menu-button')
 let presetsContainer = document.getElementById('presets-container')
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
@@ -107,15 +108,17 @@ async function main() {
     await loadData()
     generateMainRegisters()
     selectPreset(0)
-    await toggleMenu()
+    setMediaListener()
+    toggleMenu(menuButton)
 }
 
 main()
 
-async function toggleMenu(menuButton) {
-    let id = window.matchMedia('screen and (min-width:1100px)').matches ? "menu_desktop" : "menu_mobile"
+function toggleMenu(menuButton) {
+    const matchMedia = window.matchMedia('screen and (min-width:1100px)')
+    let id = matchMedia.matches ? "menu_desktop" : "menu_mobile"
+
     let menu = document.getElementById(id);
-    console.log(id)
     if (menu.style.display === "none"){
         menu.style.display = "flex"
         menuButton.textContent = 'Hide Menu'
@@ -124,6 +127,18 @@ async function toggleMenu(menuButton) {
         menu.style.display = "none"
         menuButton.textContent = 'Show Menu'
     }
+}
+
+function setMediaListener() {
+    const matchMedia = window.matchMedia('(min-width:1100px)')
+    let menus = document.getElementsByTagName('menu')
+
+    matchMedia.addEventListener( "change", () => {
+        menuButton.textContent = 'Show Menu'
+        menus[0].style.display = 'none'
+        menus[1].style.display = 'none'
+        toggleMenu(menuButton)
+    })
 }
 
 function handleClicked(button, side, row, column) {
@@ -347,9 +362,9 @@ function loadSelectedFile(e) {
         parent.removeChild(presetButtonsList[0]);
         currentPreset = 0;
         presetButtonsList[0].click()
-
     }
-
-
 }
 
+function aboutMeClicked() {
+
+}
