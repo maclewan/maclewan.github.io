@@ -1,10 +1,17 @@
+Array.prototype.insert = function(index) {
+    this.splice.apply(this, [index, 0].concat(
+        Array.prototype.slice.call(arguments, 1)));
+    return this;
+};
+
 let stopsData = []
 let leftPanel = document.getElementById('left-side')
 let rightPanel = document.getElementById('right-side')
-let presetButtonsList = document.getElementById('presets-container').children
+let presetsContainer = document.getElementById('presets-container')
+let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
 let rightPanelButtons = []
-let presetsData = []
+let presetsData = Array()
 let currentPreset = 0
 
 function newPresetTable() {
@@ -185,4 +192,33 @@ function selectPreset(index) {
 
 function updatePresetName(e) {
     presetButtonsList[currentPreset].textContent = e.target.value
+}
+
+function addPresetClicked(above) {
+    let newPresetNames = Array.from(presetButtonsList).map(x => x.textContent).filter(x => x.startsWith('New preset '))
+    let newName = 'New preset'
+    for (let i = 1; i < 50; i++) {
+        if(!newPresetNames.includes(`New preset ${i}`)){
+            newName = `New preset ${i}`
+            break
+        }
+    }
+
+    let button = document.createElement('button')
+    button.innerText = newName
+    button.onclick = function() {clickedPreset(this)}
+
+    if (above) {
+        presetButtonsList[currentPreset].before(button)
+        presetsData.insert(currentPreset, newPresetTable())
+        currentPreset ++;
+    }
+    else {
+        presetButtonsList[currentPreset].after(button)
+        presetsData.insert(currentPreset, newPresetTable())
+    }
+
+
+
+
 }
