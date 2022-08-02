@@ -275,8 +275,18 @@ function deletePresetClicked() {
 }
 
 function saveConfigClicked() {
+    // prepare data
+    let preparedData = {
+        meta: {configVersion: '1.0',},
+        presets: {},
+    }
+    presetsData.forEach((x, index) => {
+        let presetName = presetButtonsList[index].textContent
+        preparedData.presets[presetName] = x
+    })
+    // download data
     let fname = prompt("Provide file name:")
-    const file = new File([JSON.stringify(presetsData, null, '  ')], `${fname}.englerjson`, {
+    const file = new File([JSON.stringify(preparedData, null, '  ')], `${fname}.englerjson`, {
             type: 'text/plain',
         })
     const link = document.createElement('a')
@@ -293,15 +303,53 @@ function saveConfigClicked() {
 
 
 function loadConfigClicked() {
-    var input = document.createElement('input');
-    input.type = 'file';
+    const input = document.createElement('input');
+    input.addEventListener('change', loadSelectedFile)
+    input.type = 'file'
     input.accept = '.englerjson'
-    input.addEventListener('change', loadPickedFile)
-    input.click();
+    input.click()
+
 }
 
-function loadPickedFile(e){
-    console.log(e.target.files[0].fullPath)
-    console.log(e.target.files[0].name)
-    console.log(e.target.value)
+function loadSelectedFile(e) {
+    const fileReader = new FileReader(); // initialize the object
+    const file = e.target.files[0]
+    console.log(file)
+    fileReader.readAsText(file); // read file as array buffer
+
+    fileReader.onload = () => {
+        let loadedData = JSON.parse(fileReader.result)
+        // validate version
+        if (loadedData.meta.configVersion !== '1.0') {
+            alert('Cannot load this file, as config version is different as current!')
+            return
+        }
+
+        // remove all buttons except first
+        let parent = presetButtonsList[0].parentNode
+        let existingPresetsCount = presetButtonsList.length
+        for (let i=existingPresetsCount-1; i>0; i--) {
+            parent.removeChild(presetButtonsList[i])
+        }
+        presetsData = Array()
+        currentPreset = 0
+        for (const [presetName, value] of Object.entries(loadedData.presets)) {
+
+            presetsData.push(value);
+
+            let button = document.createElement('button');
+            button.innerText = presetName;
+            button.onclick = function() {clickedPreset(this)};
+            presetButtonsList[currentPreset].after(button);
+            currentPreset ++;
+        }
+        // remove first node
+        parent.removeChild(presetButtonsList[0]);
+        currentPreset = 0;
+        presetButtonsList[0].click()
+
+    }
+
+
 }
+
