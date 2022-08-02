@@ -2,6 +2,9 @@ html,body {
    all: unset;
    height: 100%;
    width: 100%;
+  -webkit-appearance: unset;
+  -webkit-border-radius: unset;
+
 }
 
 button, label, input {
@@ -28,6 +31,7 @@ menu {
   border: 1px solid black;
 
   padding: 10px;
+  margin: 5px 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -191,6 +195,8 @@ menu > button {
   menu {
     display: none;
     margin: 10px;
+    width: 14vw;
+    padding: 5px 0;
   }
 
   menu > button {
