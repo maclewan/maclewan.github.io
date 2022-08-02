@@ -253,8 +253,8 @@ function addPresetClicked(above) {
 
 function deletePresetClicked() {
     let oldIndex = currentPreset
-    if (presetButtonsList.length === 0) {
-        // todo info
+    if (presetButtonsList.length === 1) {
+        alert('Cannot delete only remaining preset!')
         return null;
     }
     let delta = oldIndex === 0 ? 1 : -1
