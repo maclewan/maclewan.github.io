@@ -64,6 +64,8 @@ allows moving all data to another platform, when iOS functionalities decide to f
 
 All actions can be done in `Menu`, just by expanding it on top.
 
+<hr>
+
 ## Generating PDF
 Finally, when all presets are done, you can generate pdf file from them, and later print, or open on another device.
 As mentioned above, it's not 100% guaranteed, that this feature will work properly on iOS devices.
