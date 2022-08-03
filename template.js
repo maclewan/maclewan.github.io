@@ -133,10 +133,32 @@ async function generateHTML() {
         fillPresetName(i)
     }
 
+    const opt = {
+        filename: 'filename',
+        image: {
+          type: "jpeg",
+          quality: 1.0,
+        },
+        html2canvas: {
+          scale: 1.5,
+          dpi: 192,
+          letterRendering: true,
+          allowTaint: true,
+        },
+        jsPDF: {
+          unit: "mm",
+
+          format: [260, 280],
+          orientation: "landscape",
+          compress: true,
+        },
+    }
+
     var element = document.body
     html2pdf().set({
       pagebreak: { mode: 'legacy'}
     });
+    html2pdf().set(opt)
     await html2pdf(element, {html2canvas:  { scale: 4 }})
     window.location.replace("./index.html");
 }
