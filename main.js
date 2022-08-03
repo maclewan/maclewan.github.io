@@ -478,3 +478,7 @@ function setVersion() {
     let versionLabel = document.getElementById('version')
     versionLabel.innerText = `Version ${VERSION}`
 }
+
+function tutorialClicked(){
+    window.open("https://github.com/maclewan/maclewan.github.io/blob/main/README.md#tutorial")
+}
