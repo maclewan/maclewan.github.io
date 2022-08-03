@@ -104,7 +104,7 @@ function fillPresetName(preset){
 
 }
 
-function generateHTML() {
+async function generateHTML() {
     let presetCount = presetsData.length
     if (!presetCount || presetCount < 1) {
         alert('Problem with data, clear browser localstorage and try again.')
@@ -137,6 +137,6 @@ function generateHTML() {
     html2pdf().set({
       pagebreak: { mode: 'legacy'}
     });
-    html2pdf(element, {html2canvas:  { scale: 4 }})
-
+    await html2pdf(element, {html2canvas:  { scale: 4 }})
+    window.location.replace("./index.html");
 }

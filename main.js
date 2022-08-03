@@ -32,6 +32,7 @@ async function main() {
     clickedPreset(presetButtonsList[0])
     setMediaListener()
     toggleMenu(menuButton)
+    tryLoadingOldSession()
 }
 
 function newPresetTable() {
@@ -322,14 +323,7 @@ function deletePresetClicked() {
 
 function saveConfigClicked() {
     // prepare data
-    let preparedData = {
-        meta: {configVersion: '1.0',},
-        presets: {},
-    }
-    presetsData.forEach((x, index) => {
-        let presetName = presetButtonsList[index].textContent
-        preparedData.presets[presetName] = x
-    })
+    let preparedData = generateEnglerJsonData()
     // download data
     let fname = prompt("Provide file name:")
     const file = new File([JSON.stringify(preparedData, null, '  ')], `${fname}.englerjson`, {
@@ -345,6 +339,18 @@ function saveConfigClicked() {
 
     document.body.removeChild(link)
     window.URL.revokeObjectURL(url)
+}
+
+function generateEnglerJsonData() {
+    let preparedData = {
+        meta: {configVersion: '1.0',},
+        presets: {},
+    }
+    presetsData.forEach((x, index) => {
+        let presetName = presetButtonsList[index].textContent
+        preparedData.presets[presetName] = x
+    })
+    return preparedData
 }
 
 
@@ -365,35 +371,39 @@ function loadSelectedFile(e) {
 
     fileReader.onload = () => {
         let loadedData = JSON.parse(fileReader.result)
-        // validate version
-        if (loadedData.meta.configVersion !== '1.0') {
-            alert('Cannot load this file, as config version is different as current!')
-            return
-        }
-
-        // remove all buttons except first
-        let parent = presetButtonsList[0].parentNode
-        let existingPresetsCount = presetButtonsList.length
-        for (let i=existingPresetsCount-1; i>0; i--) {
-            parent.removeChild(presetButtonsList[i])
-        }
-        presetsData = Array()
-        currentPreset = 0
-        for (const [presetName, value] of Object.entries(loadedData.presets)) {
-
-            presetsData.push(value);
-
-            let button = document.createElement('button');
-            button.innerText = presetName;
-            button.onclick = function() {clickedPreset(this)};
-            presetButtonsList[currentPreset].after(button);
-            currentPreset ++;
-        }
-        // remove first node
-        parent.removeChild(presetButtonsList[0]);
-        currentPreset = 0;
-        presetButtonsList[0].click()
+        parseEnglerJsonData(loadedData)
     }
+}
+
+function parseEnglerJsonData(loadedData){
+    // validate version
+    if (loadedData.meta.configVersion !== '1.0') {
+        alert('Cannot load this file, as config version is different as current!')
+        return
+    }
+
+    // remove all buttons except first
+    let parent = presetButtonsList[0].parentNode
+    let existingPresetsCount = presetButtonsList.length
+    for (let i=existingPresetsCount-1; i>0; i--) {
+        parent.removeChild(presetButtonsList[i])
+    }
+    presetsData = Array()
+    currentPreset = 0
+    for (const [presetName, value] of Object.entries(loadedData.presets)) {
+
+        presetsData.push(value);
+
+        let button = document.createElement('button');
+        button.innerText = presetName;
+        button.onclick = function() {clickedPreset(this)};
+        presetButtonsList[currentPreset].after(button);
+        currentPreset ++;
+    }
+    // remove first node
+    parent.removeChild(presetButtonsList[0]);
+    currentPreset = 0;
+    presetButtonsList[0].click()
 }
 
 function aboutClicked() {
@@ -414,5 +424,22 @@ function generatePDFClicked() {
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
 
-    window.open('./template.html', '', 'height=1169,width=826');
+    // window.open('./template.html', '', 'height=1169,width=826');
+    window.location.replace("./template.html");
+}
+
+window.onbeforeunload = () => {
+    let preparedData = generateEnglerJsonData()
+    localStorage.setItem('sessionData', JSON.stringify(preparedData));
+    setTimeout(null, 10000)
+}
+
+function tryLoadingOldSession() {
+    let oldSessionData = localStorage.getItem('sessionData')
+    if(!oldSessionData){
+        return
+    }
+    let objectData = JSON.parse(oldSessionData)
+    parseEnglerJsonData(objectData)
+
 }
