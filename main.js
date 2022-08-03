@@ -1,4 +1,4 @@
-const VERSION = '1.1.8.2'
+const VERSION = '1.1.8.3'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -47,7 +47,6 @@ function iOS() {
     'iPhone',
     'iPod'
   ].includes(navigator.platform)
-  // iPad on iOS 13 detection
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
