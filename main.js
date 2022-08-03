@@ -1,3 +1,5 @@
+const VERSION = '1.1.3'
+
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
         Array.prototype.slice.call(arguments, 1)));
@@ -33,6 +35,7 @@ async function main() {
     setMediaListener()
     toggleMenu(menuButton)
     tryLoadingOldSession()
+    setVersion()
 }
 
 function newPresetTable() {
@@ -442,4 +445,9 @@ function tryLoadingOldSession() {
     let objectData = JSON.parse(oldSessionData)
     parseEnglerJsonData(objectData)
 
+}
+
+function setVersion() {
+    let versionLabel = document.getElementById('version')
+    versionLabel.innerText = `Version ${VERSION}`
 }
