@@ -136,6 +136,8 @@ async function generateHTML() {
             container.parentNode.appendChild(newContainer)
         }
     }
+    // todo
+    // let iOS = () => true
 
     for (let i=0; i< presetCount; i++){
         fillMainPanel('left', i)
@@ -155,14 +157,15 @@ async function generateHTML() {
         html2canvas: {
           scale: 1.5,
           dpi: 192,
+          //scale: 4,
+          //dpi: 512,
           letterRendering: true,
           allowTaint: true,
         },
         jsPDF: {
           unit: "mm",
-
-          format: [260, 280],
-          orientation: "landscape",
+          format: [297, 210],
+          orientation: "portrait",
           compress: true,
         },
         pagebreak: { mode: 'legacy'},
@@ -191,5 +194,8 @@ async function generateHTML() {
           .get('pdf')
           .then((pdf) => downloadPdf(pdf));
 
-    window.location.href = "./index.html"
+    if (!iOS()){
+        window.location.href = "./index.html"
+    }
+
 }

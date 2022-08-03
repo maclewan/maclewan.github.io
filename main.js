@@ -1,4 +1,4 @@
-const VERSION = '1.1.6'
+const VERSION = '1.1.7'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -438,6 +438,9 @@ function generatePDFClicked() {
     //     return
     // }
 
+    // todo
+    // let iOS = () => true
+
     let names = Array()
     presetsData.forEach((x, index) => {
         let presetName = presetButtonsList[index].textContent
@@ -447,7 +450,12 @@ function generatePDFClicked() {
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
 
-    window.location.href = "./template.html";
+    if (!iOS()){
+        window.location.href = "./template.html";
+    } else {
+        window.open("./template.html")
+    }
+
 }
 
 window.onbeforeunload = () => {
