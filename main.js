@@ -397,22 +397,6 @@ function loadSelectedFile(e) {
 }
 
 function aboutClicked() {
-    // var divContents = $("#dvContainer").html();
-
-
-    // var printWindow = window.open('./template.html', '', 'height=3508,width=2480');
-    // printWindow.document.write('<html><head><title>e-registrant</title>');
-    // printWindow.document.write('</head><body >');
-    //
-    //
-    // printWindow.document.write('dupa test');
-    // printWindow.document.write('</body></html>');
-    // printWindow.document.close();
-    // printWindow.print();
-    // printWindow.close();
-
-    // localStorage.setItem('presetsData', JSON.stringify(presetsData));
-
     alert("Created by Maciej Lewandowicz. " +
         "Simple web app to simplify and potentially unify registration process " +
         "for reconstructed Engler organ in Wroclaw. Main purpose is to make organist's and assistant's lives easier, " +
@@ -429,5 +413,6 @@ function generatePDFClicked() {
 
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
-    var printWindow = window.open('./template.html', '', 'height=3508,width=2480');
+
+    window.open('./template.html', '', 'height=1169,width=826');
 }

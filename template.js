@@ -4,7 +4,14 @@ const PRESETS_DATA_KEY = 'presetsData'
 const PRESETS_NAMES_KEY = 'presetNames'
 main()
 
+async function terribleImport(){
+    const response = await fetch('./html2pdf.js')
+    const text = await response.text()
+    eval(text)
+}
+
 async function main() {
+    terribleImport()
     loadData()
     generateHTML()
 }
@@ -17,13 +24,12 @@ function loadData() {
 
 function setFieldValue(cell, value) {
     let label = document.createElement('div')
-    label.textContent = 'X'
+    label.textContent = value
     label.className = 'handle-label'
-    // cell.style.backgroundColor = "grey"
     cell.appendChild(label)
 }
 
-function setEmptyValue(cell, value) {
+function setEmptyValue(cell) {
     let label = document.createElement('div')
     label.textContent = ''
     label.className = 'handle-label'
@@ -42,10 +48,10 @@ function fillMainPanel(side, preset)
 
         for (let column=0; column < cells.length; column++) {
             if (presetsData[preset][side][row+1][column+1]){
-                setFieldValue(cells[column], null)
+                setFieldValue(cells[column], 'X')
             }
             else {
-                setEmptyValue(cells[column], null)
+                setEmptyValue(cells[column])
             }
         }
     }
@@ -58,10 +64,16 @@ function fillCopels(preset){
     const rp = container.querySelector('#rp')
     if (presetsData[preset].coples.ow){
 
-            setFieldValue(ow, null)
+        setFieldValue(ow, 'X')
+    }
+    else {
+        setEmptyValue(ow)
     }
     if (presetsData[preset].coples.rp){
-            setFieldValue(rp, null)
+            setFieldValue(rp, 'X')
+    }
+    else {
+        setEmptyValue(rp)
     }
 }
 
@@ -76,7 +88,10 @@ function fillPositiv(side, preset){
 
     for (let column=0; column < cells.length; column++) {
         if (presetsData[preset][side][7][column+delta]){
-            setFieldValue(cells[column], null)
+            setFieldValue(cells[column], 'X')
+        }
+        else {
+            setEmptyValue(cells[column])
         }
     }
 
@@ -100,6 +115,11 @@ function generateHTML() {
         for (let i=1; i< presetCount; i++){
             let newContainer = container.cloneNode(true)
             newContainer.setAttribute('id', `container-${i}`)
+            if (i % 3 === 2 && presetCount - 1 !== i){
+                let divPageBreak = document.createElement('div')
+                divPageBreak.className = 'html2pdf__page-break'
+                newContainer.appendChild(divPageBreak)
+            }
             container.parentNode.appendChild(newContainer)
         }
     }
@@ -113,26 +133,10 @@ function generateHTML() {
         fillPresetName(i)
     }
 
+    var element = document.body
+    html2pdf().set({
+      pagebreak: { mode: 'legacy'}
+    });
+    html2pdf(element)
 
-
-    // fillMainPanel('left')
-    // fillMainPanel('right')
-    // fillPositiv('left')
-    // fillPositiv('right')
-    // fillCopels()
-
-    // const data = presetsData[0].left.slice(1,6)
-
-    // console.log(data)
-    // data.forEach(rowData => {
-    //     const rowElement = document.createElement('tr')
-    //     leftMainRegisterTable.appendChild(rowElement)
-    //
-    //     rowData.slice(1,7).forEach(cellData => {
-    //         const cellElement = document.createElement('td')
-    //         const dataTextNode = document.createTextNode(cellData)
-    //         cellElement.appendChild(dataTextNode)
-    //         rowElement.appendChild(cellElement)
-    //     })
-    // })
 }

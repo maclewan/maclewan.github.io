@@ -1,16 +1,29 @@
+:root {
+    --base-unit: 18px;
+    --2-base-unit: calc(var(--base-unit) * 2);
+    --3-base-unit: calc(var(--base-unit) * 3);
+    --10-base-unit: calc(var(--base-unit) * 10);;
+    --12-base-unit: calc(var(--base-unit) * 12);;
+    --7-base-unit: calc(var(--base-unit) * 7);;
+    --1p8-base-unit: calc(var(--base-unit) * 1.8);;
+    --1p5-base-unit: calc(var(--base-unit) * 1.5);;
+}
+
 table, th, td {
-  border:2px solid black;
+    border:1px solid black;
+    border-collapse: collapse;
 }
 tr {
-    height: 100px
+    height: var(--base-unit);
 }
 th {
-    width: 100px;
+    width: var(--2-base-unit);
 }
 
 hr {
-    height: 2px;
     width: 100%;
+    height: 1px;
+    background-color: #333; /* Modern Browsers */
 }
 
 .section-container {
@@ -21,53 +34,52 @@ hr {
 }
 
 .preset-name {
-    margin-top: 50px;
-    font-size: 2.5vw;
+    font-size: var(--1p5-base-unit);
 }
 
 .preset-container {
-    margin: 100px 50px 150px 50px;
+    margin: var(--2-base-unit) var(--base-unit) var(--base-unit) var(--base-unit);
     display: flex;
     flex-direction: row;
 }
 
 .register-panel {
-    width: 600px;
+    width: var(--12-base-unit);
 }
 
 #left-side > .positiv {
-    width: 500px;
-    margin-right: 100px;
+    width: var(--10-base-unit);
+    margin-right: var(--2-base-unit);
 }
 
 #right-side > .positiv {
-    width: 500px;
-    margin-left: 100px;
+    width: var(--10-base-unit);
+    margin-left: var(--2-base-unit);
 }
 
 .main-registers {
-    width: 600px;
+    width: var(--12-base-unit);
 }
 
 .cople-panel {
-    width: 100px;
-    margin: 350px 50px 50px 50px;
+    width: var(--2-base-unit);
+    margin: var(--7-base-unit) var(--2-base-unit) var(--base-unit) var(--2-base-unit);
 }
 
 .cople-panel > table {
-    width: 100px;
+    width: var(--2-base-unit);
 }
 
 .positiv-spacer {
-    width: 600px;
-    height: 75px;
+    width: var(--12-base-unit);
+    height: var(--1p5-base-unit);
 }
 
 .handle-label {
-    height: 90px;
-    width: 90px;
+    height: var(--1p8-base-unit);
+    width: var(--1p8-base-unit);
     text-align: center;
-    font-size: 2vw;
+    font-size: var(--base-unit);;
     display: table-cell;
     vertical-align: middle;
 }
