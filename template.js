@@ -4,6 +4,19 @@ const PRESETS_DATA_KEY = 'presetsData'
 const PRESETS_NAMES_KEY = 'presetNames'
 main()
 
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
 async function terribleImport(){
     const response = await fetch('./html2pdf.js')
     const text = await response.text()
@@ -133,8 +146,8 @@ async function generateHTML() {
         fillPresetName(i)
     }
 
-    const opt = {
-        filename: 'filename',
+    const fileName = `Registration-presets-${new Date().toLocaleString().replace(',', '').replace(' ', '-')}.pdf`
+    const optIOS = {
         image: {
           type: "jpeg",
           quality: 1.0,
@@ -152,13 +165,31 @@ async function generateHTML() {
           orientation: "landscape",
           compress: true,
         },
+        pagebreak: { mode: 'legacy'},
+        filename: fileName,
+    }
+    const optNonIOS = {
+        pagebreak: { mode: 'legacy'},
+        html2canvas:  { scale: 4 },
+        filename: fileName,
+    }
+    const opt = iOS() ? optIOS : optNonIOS;
+    const element = document.body
+
+    const downloadPdf = (pdf) => {
+        let link = document.createElement('a');
+        link.target = '_blank';
+        link.href = pdf.output('bloburl');
+        link.download = fileName;
+        link.click();
+        link.remove();
     }
 
-    var element = document.body
-    html2pdf().set({
-      pagebreak: { mode: 'legacy'}
-    });
-    html2pdf().set(opt)
-    await html2pdf(element, {html2canvas:  { scale: 4 }})
-    window.location.replace("./index.html");
+    await html2pdf().from(element)
+          .set(opt)
+          .toPdf()
+          .get('pdf')
+          .then((pdf) => downloadPdf(pdf));
+
+    window.location.href = "./index.html"
 }

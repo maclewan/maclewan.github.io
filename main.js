@@ -1,4 +1,4 @@
-const VERSION = '1.1.4'
+const VERSION = '1.1.6'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -36,6 +36,19 @@ async function main() {
     toggleMenu(menuButton)
     tryLoadingOldSession()
     setVersion()
+}
+
+function iOS() {
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  // iPad on iOS 13 detection
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 function newPresetTable() {
@@ -417,7 +430,14 @@ function aboutClicked() {
 }
 
 
+
 function generatePDFClicked() {
+    // if(iOS()){
+    //     alert('PDF generating is currently disabled on IOS platform. Please save config file, and open' +
+    //         'it on other platform, and than generate pdf.')
+    //     return
+    // }
+
     let names = Array()
     presetsData.forEach((x, index) => {
         let presetName = presetButtonsList[index].textContent
@@ -427,8 +447,7 @@ function generatePDFClicked() {
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
 
-    // window.open('./template.html', '', 'height=1169,width=826');
-    window.location.replace("./template.html");
+    window.location.href = "./template.html";
 }
 
 window.onbeforeunload = () => {
