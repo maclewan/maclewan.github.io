@@ -13,11 +13,14 @@ let coplesButtons = {
 }
 let menuButton = document.getElementById('menu-button')
 let presetsContainer = document.getElementById('presets-container')
+let nameInput = document.getElementById('preset-name-input')
+
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
 let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
+
 
 main()
 
@@ -61,7 +64,6 @@ function disableRegisters() {
 
 function setupPresets() {
     presetsData.push(newPresetTable())
-    let nameInput = document.getElementById('preset-name-input')
     nameInput.addEventListener('change', updatePresetName)
 
 
@@ -395,8 +397,30 @@ function loadSelectedFile(e) {
 }
 
 function aboutClicked() {
+    // var divContents = $("#dvContainer").html();
+
+
+    // var printWindow = window.open('./template.html', '', 'height=3508,width=2480');
+    // printWindow.document.write('<html><head><title>e-registrant</title>');
+    // printWindow.document.write('</head><body >');
+    //
+    //
+    // printWindow.document.write('dupa test');
+    // printWindow.document.write('</body></html>');
+    // printWindow.document.close();
+    // printWindow.print();
+    // printWindow.close();
+
+    // localStorage.setItem('presetsData', JSON.stringify(presetsData));
+
     alert("Created by Maciej Lewandowicz. " +
         "Simple web app to simplify and potentially unify registration process " +
         "for reconstructed Engler organ in Wroclaw. Main purpose is to make organist's and assistant's lives easier, " +
         "and also learn little bit of JavaScript in real live case.")
+}
+
+
+function generatePDFClicked() {
+    localStorage.setItem('presetsData', JSON.stringify(presetsData));
+    var printWindow = window.open('./template.html', '', 'height=3508,width=2480');
 }

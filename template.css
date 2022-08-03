@@ -1,0 +1,51 @@
+table, th, td {
+  border:2px solid black;
+}
+tr {
+    height: 100px
+}
+th {
+    width: 100px;
+}
+
+.preset-container {
+    margin: 50px 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.register-panel {
+    width: 600px;
+}
+
+#left-side > .positiv {
+    width: 500px;
+    margin-right: 100px;
+}
+
+#right-side > .positiv {
+    width: 500px;
+    margin-left: 100px;
+}
+
+.main-registers {
+    width: 600px;
+}
+
+.cople-panel {
+    width: 100px;
+    margin: 350px 50px 50px 50px;
+}
+
+.cople-panel > table {
+    width: 100px;
+}
+
+.positiv-spacer {
+    width: 600px;
+    height: 75px;
+}
+
+
+
+
