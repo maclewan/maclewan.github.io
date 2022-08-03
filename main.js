@@ -1,4 +1,4 @@
-const VERSION = '1.1.7'
+const VERSION = '1.1.8'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -438,8 +438,6 @@ function generatePDFClicked() {
     //     return
     // }
 
-    // todo
-    // let iOS = () => true
 
     let names = Array()
     presetsData.forEach((x, index) => {
@@ -458,7 +456,7 @@ function generatePDFClicked() {
 
 }
 
-window.onbeforeunload = () => {
+window.onunload = () => {
     let preparedData = generateEnglerJsonData()
     localStorage.setItem('sessionData', JSON.stringify(preparedData));
     setTimeout(null, 10000)

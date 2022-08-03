@@ -136,8 +136,6 @@ async function generateHTML() {
             container.parentNode.appendChild(newContainer)
         }
     }
-    // todo
-    // let iOS = () => true
 
     for (let i=0; i< presetCount; i++){
         fillMainPanel('left', i)
