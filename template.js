@@ -153,8 +153,8 @@ async function generateHTML() {
           quality: 1.0,
         },
         html2canvas: {
-          scale: 4,
-          dpi: 512,
+          scale: 2,
+          dpi: 256,
           letterRendering: true,
           allowTaint: true,
         },
