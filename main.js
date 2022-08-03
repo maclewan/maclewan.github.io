@@ -1,4 +1,4 @@
-const VERSION = '1.1.8.4'
+const VERSION = '1.2.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -341,6 +341,9 @@ function saveConfigClicked() {
     let preparedData = generateEnglerJsonData()
     // download data
     let fname = prompt("Provide file name:")
+    if (!fname) {
+        return
+    }
     const file = new File([JSON.stringify(preparedData, null, '  ')], `${fname}.englerjson`, {
             type: 'text/plain',
         })
