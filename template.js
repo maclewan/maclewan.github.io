@@ -137,6 +137,6 @@ function generateHTML() {
     html2pdf().set({
       pagebreak: { mode: 'legacy'}
     });
-    html2pdf(element)
+    html2pdf(element, {html2canvas:  { scale: 4 }})
 
 }
