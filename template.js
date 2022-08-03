@@ -1,5 +1,7 @@
 let presetsData = Array()
+let presetNames = Array()
 const PRESETS_DATA_KEY = 'presetsData'
+const PRESETS_NAMES_KEY = 'presetNames'
 main()
 
 async function main() {
@@ -9,10 +11,27 @@ async function main() {
 
 function loadData() {
     presetsData = JSON.parse(localStorage.getItem(PRESETS_DATA_KEY))
-    // localStorage.removeItem(PRESETS_DATA_KEY)
+    presetNames = JSON.parse(localStorage.getItem(PRESETS_NAMES_KEY))
+
 }
 
-function fillMainPanel(side, preset){
+function setFieldValue(cell, value) {
+    let label = document.createElement('div')
+    label.textContent = 'X'
+    label.className = 'handle-label'
+    // cell.style.backgroundColor = "grey"
+    cell.appendChild(label)
+}
+
+function setEmptyValue(cell, value) {
+    let label = document.createElement('div')
+    label.textContent = ''
+    label.className = 'handle-label'
+    cell.appendChild(label)
+}
+
+function fillMainPanel(side, preset)
+{
     let container = document.getElementById(`container-${preset}`)
 
     const sideMainPanel = container.querySelector(`#${side}-side-panel`)
@@ -23,7 +42,10 @@ function fillMainPanel(side, preset){
 
         for (let column=0; column < cells.length; column++) {
             if (presetsData[preset][side][row+1][column+1]){
-                cells[column].style.backgroundColor = "grey"
+                setFieldValue(cells[column], null)
+            }
+            else {
+                setEmptyValue(cells[column], null)
             }
         }
     }
@@ -35,10 +57,11 @@ function fillCopels(preset){
     const ow = container.querySelector('#ow')
     const rp = container.querySelector('#rp')
     if (presetsData[preset].coples.ow){
-            ow.style.backgroundColor = "grey"
+
+            setFieldValue(ow, null)
     }
     if (presetsData[preset].coples.rp){
-            rp.style.backgroundColor = "grey"
+            setFieldValue(rp, null)
     }
 }
 
@@ -53,9 +76,16 @@ function fillPositiv(side, preset){
 
     for (let column=0; column < cells.length; column++) {
         if (presetsData[preset][side][7][column+delta]){
-            cells[column].style.backgroundColor = "grey"
+            setFieldValue(cells[column], null)
         }
     }
+
+}
+
+function fillPresetName(preset){
+    let container = document.getElementById(`container-${preset}`)
+    const label = container.querySelector('.preset-name')
+    label.textContent = presetNames[preset]
 
 }
 
@@ -80,15 +110,16 @@ function generateHTML() {
         fillPositiv('left', i)
         fillPositiv('right', i)
         fillCopels(i)
+        fillPresetName(i)
     }
 
 
 
-    fillMainPanel('left')
-    fillMainPanel('right')
-    fillPositiv('left')
-    fillPositiv('right')
-    fillCopels()
+    // fillMainPanel('left')
+    // fillMainPanel('right')
+    // fillPositiv('left')
+    // fillPositiv('right')
+    // fillCopels()
 
     // const data = presetsData[0].left.slice(1,6)
 

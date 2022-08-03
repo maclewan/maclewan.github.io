@@ -421,6 +421,13 @@ function aboutClicked() {
 
 
 function generatePDFClicked() {
+    let names = Array()
+    presetsData.forEach((x, index) => {
+        let presetName = presetButtonsList[index].textContent
+        names.push(presetName)
+    })
+
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
+    localStorage.setItem('presetNames', JSON.stringify(names))
     var printWindow = window.open('./template.html', '', 'height=3508,width=2480');
 }

@@ -63,6 +63,14 @@ hr {
     height: 75px;
 }
 
+.handle-label {
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 2vw;
+    display: table-cell;
+    vertical-align: middle;
+}
 
 
 
