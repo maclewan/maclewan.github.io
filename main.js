@@ -270,9 +270,6 @@ function setButtonState(button, bool) {
 }
 
 function getButtonState(button) {
-    console.log(button.style.backgroundColor === buttonHandleAttached)
-    console.log(button.style.backgroundColor)
-    console.log(buttonHandleAttached)
     return button.style.backgroundColor === buttonHandleAttached
 }
 
@@ -298,6 +295,21 @@ function addPresetClicked(above) {
         presetButtonsList[currentPreset].after(button)
         presetsData.insert(currentPreset + 1, newPresetTable())
     }
+}
+
+function copyPreviousClicked() {
+    if (!confirm("This action will override all existing data in current preset. Do you want to continue?")) {
+        return;
+    }
+    if (currentPreset === 0) {
+        return;
+    }
+    presetsData[currentPreset] = deepCopy(presetsData[currentPreset - 1])
+    clickedPreset(presetButtonsList[currentPreset])
+}
+
+function deepCopy(obj){
+    return JSON.parse(JSON.stringify(obj))
 }
 
 function deletePresetClicked() {
@@ -364,7 +376,6 @@ function loadConfigClicked() {
 function loadSelectedFile(e) {
     const fileReader = new FileReader(); // initialize the object
     const file = e.target.files[0]
-    console.log(file)
     fileReader.readAsText(file); // read file as array buffer
 
     fileReader.onload = () => {
