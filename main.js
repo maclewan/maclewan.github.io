@@ -23,6 +23,9 @@ let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
 
+const buttonNormal = !iOS() ? 'buttonface' : '-apple-system-green'
+const buttonSelected = !iOS() ? '#d6d6d6' : '-apple-system-opaque-secondary-fill'
+const buttonHandleAttached = !iOS() ? 'rgb(145, 85, 2)' : '-apple-system-brown'
 
 main()
 
@@ -112,8 +115,8 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
     newButton.onclick = function() {handleClicked(newButton, side, j, i)}
     newButton.id = generateButtonId(side, j, i)
 
-    let buttonText = document.createTextNode('')
-    newButton.appendChild(buttonText)
+    // let buttonText = document.createTextNode('')
+    // newButton.appendChild(buttonText)
 
     let label = document.createElement('label');
 
@@ -183,61 +186,31 @@ function setMediaListener() {
 
 function handleClicked(button, side, row, column) {
     if (!document.getElementById('switch').checked){
-        // state mode
-        if(button.innerText === 'X') {
-            button.innerText = ''
+        if(getButtonState(button)) {
+            setButtonState(button, false)
             presetsData[currentPreset][side][row][column] = false
         }
         else {
-            button.innerText = 'X'
+            setButtonState(button, true)
             presetsData[currentPreset][side][row][column] = true
 
         }
     }
-
-    // else {
-    //     // todo or maybe not, see below
-    //     return none
-    //     // diff mode
-    //     if(button.innerText === '') {
-    //         button.innerText = '+'
-    //     }
-    //     else if (button.innerText === '+') {
-    //         button.innerText = '-'
-    //     }
-    //     else {
-    //         button.innerText = ''
-    //     }
-    // }
 }
 
 function copelClicked(button, name) {
     if (!document.getElementById('switch').checked){
         // state mode
-        if(button.innerText === 'X') {
-            button.innerText = ''
+        if(getButtonState(button)) {
+            setButtonState(button, false)
             presetsData[currentPreset].coples[name] = false
         }
         else {
-            button.innerText = 'X'
+            setButtonState(button, true)
             presetsData[currentPreset].coples[name] = true
 
         }
     }
-    // else {
-    //     // todo or maybe not, as it will complicate usage a lot
-    //     return null
-    //     // diff mode
-    //     if(button.innerText === '') {
-    //         button.innerText = '+'
-    //     }
-    //     else if (button.innerText === '+') {
-    //         button.innerText = '-'
-    //     }
-    //     else {
-    //         button.innerText = ''
-    //     }
-    // }
 }
 
 function clickedPreset(button) {
@@ -249,10 +222,10 @@ function clickedPreset(button) {
 
 function selectPreset(index) {
     for (let item of presetButtonsList){
-        item.style.backgroundColor = 'buttonface'
+        item.style.backgroundColor = buttonNormal
     }
     let button = presetButtonsList[index]
-    button.style.backgroundColor = '#d6d6d6'
+    button.style.backgroundColor = buttonSelected
     nameInput.value = button.textContent
 }
 
@@ -293,7 +266,14 @@ function updatePresetName(e) {
 }
 
 function setButtonState(button, bool) {
-    button.textContent = bool ? 'X' : ''
+    button.style.backgroundColor = bool ? buttonHandleAttached : buttonNormal
+}
+
+function getButtonState(button) {
+    console.log(button.style.backgroundColor === buttonHandleAttached)
+    console.log(button.style.backgroundColor)
+    console.log(buttonHandleAttached)
+    return button.style.backgroundColor === buttonHandleAttached
 }
 
 function addPresetClicked(above) {
