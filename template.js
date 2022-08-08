@@ -1,7 +1,10 @@
 let presetsData = Array()
 let presetNames = Array()
+let diffModes = Array()
 const PRESETS_DATA_KEY = 'presetsData'
 const PRESETS_NAMES_KEY = 'presetNames'
+const DIFFMODES_NAMES_KEY = 'diffModes'
+
 main()
 
 function iOS() {
@@ -32,6 +35,7 @@ async function main() {
 function loadData() {
     presetsData = JSON.parse(localStorage.getItem(PRESETS_DATA_KEY))
     presetNames = JSON.parse(localStorage.getItem(PRESETS_NAMES_KEY))
+    diffModes = JSON.parse(localStorage.getItem(DIFFMODES_NAMES_KEY))
 
 }
 
@@ -42,11 +46,23 @@ function setFieldValue(cell, value) {
     cell.appendChild(label)
 }
 
-function setEmptyValue(cell) {
-    let label = document.createElement('div')
-    label.textContent = ''
-    label.className = 'handle-label'
-    cell.appendChild(label)
+function getValue(preset, side, y, x) {
+    let current = x? presetsData[preset][side][y][x] : presetsData[preset][side][y]
+
+    if (!diffModes[preset]) {
+        return current ? '✖' : ''
+    }
+    else {
+        let previous = x? presetsData[preset-1][side][y][x] : presetsData[preset-1][side][y]
+
+        if (preset === 0) {
+            return current ? '➕' : ''
+        }
+        if (previous === current) {
+            return ''
+        }
+        return previous ? '➖' : '➕'
+    }
 }
 
 function fillMainPanel(side, preset)
@@ -60,12 +76,9 @@ function fillMainPanel(side, preset)
         let cells = rows[row].children
 
         for (let column=0; column < cells.length; column++) {
-            if (presetsData[preset][side][row+1][column+1]){
-                setFieldValue(cells[column], 'X')
-            }
-            else {
-                setEmptyValue(cells[column])
-            }
+            let value = getValue(preset, side, row+1, column+1)
+            setFieldValue(cells[column], value)
+
         }
     }
 }
@@ -75,19 +88,10 @@ function fillCopels(preset){
 
     const ow = container.querySelector('#ow')
     const rp = container.querySelector('#rp')
-    if (presetsData[preset].coples.ow){
 
-        setFieldValue(ow, 'X')
-    }
-    else {
-        setEmptyValue(ow)
-    }
-    if (presetsData[preset].coples.rp){
-            setFieldValue(rp, 'X')
-    }
-    else {
-        setEmptyValue(rp)
-    }
+    setFieldValue(ow, getValue(preset, 'coples', 'ow', null))
+    setFieldValue(rp, getValue(preset, 'coples', 'rp', null))
+
 }
 
 function fillPositiv(side, preset){
@@ -100,12 +104,8 @@ function fillPositiv(side, preset){
     let cells = row.children
 
     for (let column=0; column < cells.length; column++) {
-        if (presetsData[preset][side][7][column+delta]){
-            setFieldValue(cells[column], 'X')
-        }
-        else {
-            setEmptyValue(cells[column])
-        }
+        let value = getValue(preset, side, 7, column+delta)
+        setFieldValue(cells[column], value)
     }
 
 }
@@ -113,7 +113,8 @@ function fillPositiv(side, preset){
 function fillPresetName(preset){
     let container = document.getElementById(`container-${preset}`)
     const label = container.querySelector('.preset-name')
-    label.textContent = presetNames[preset]
+    let name = presetNames[preset] + (diffModes[preset] ? ' (diff)' : '')
+    label.textContent = name
 
 }
 
