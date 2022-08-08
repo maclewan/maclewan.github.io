@@ -2,11 +2,12 @@
     --base-unit: 18px;
     --2-base-unit: calc(var(--base-unit) * 2);
     --3-base-unit: calc(var(--base-unit) * 3);
-    --10-base-unit: calc(var(--base-unit) * 10);;
-    --12-base-unit: calc(var(--base-unit) * 12);;
-    --7-base-unit: calc(var(--base-unit) * 7);;
-    --1p8-base-unit: calc(var(--base-unit) * 1.8);;
-    --1p5-base-unit: calc(var(--base-unit) * 1.5);;
+    --10-base-unit: calc(var(--base-unit) * 10);
+    --12-base-unit: calc(var(--base-unit) * 12);
+    --7-base-unit: calc(var(--base-unit) * 7);
+    --1p8-base-unit: calc(var(--base-unit) * 1.8);
+    --1p5-base-unit: calc(var(--base-unit) * 1.5);
+    --1p4-base-unit: calc(var(--base-unit) * 1.4);
 }
 
 table, th, td {
@@ -79,7 +80,7 @@ hr {
     height: var(--1p8-base-unit);
     width: var(--1p8-base-unit);
     text-align: center;
-    font-size: var(--base-unit);;
+    font-size: var(--1p4-base-unit);;
     display: table-cell;
     vertical-align: middle;
 }

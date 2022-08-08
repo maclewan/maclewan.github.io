@@ -1,4 +1,4 @@
-const VERSION = '1.2.1'
+const VERSION = '1.3.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -16,6 +16,8 @@ let coplesButtons = {
 let menuButton = document.getElementById('menu-button')
 let presetsContainer = document.getElementById('presets-container')
 let nameInput = document.getElementById('preset-name-input')
+let modal = document.getElementById("print-modal");
+
 
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
@@ -23,6 +25,9 @@ let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
 
+const buttonNormal = !iOS() ? 'buttonface' : '-apple-system-green'
+const buttonSelected = !iOS() ? '#d6d6d6' : '-apple-system-opaque-secondary-fill'
+const buttonHandleAttached = !iOS() ? 'rgb(145, 85, 2)' : '-apple-system-brown'
 
 main()
 
@@ -112,9 +117,6 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
     newButton.onclick = function() {handleClicked(newButton, side, j, i)}
     newButton.id = generateButtonId(side, j, i)
 
-    let buttonText = document.createTextNode('')
-    newButton.appendChild(buttonText)
-
     let label = document.createElement('label');
 
     label.innerText = dataSide[j][i]
@@ -183,61 +185,31 @@ function setMediaListener() {
 
 function handleClicked(button, side, row, column) {
     if (!document.getElementById('switch').checked){
-        // state mode
-        if(button.innerText === 'X') {
-            button.innerText = ''
+        if(getButtonState(button)) {
+            setButtonState(button, false)
             presetsData[currentPreset][side][row][column] = false
         }
         else {
-            button.innerText = 'X'
+            setButtonState(button, true)
             presetsData[currentPreset][side][row][column] = true
 
         }
     }
-
-    // else {
-    //     // todo or maybe not, see below
-    //     return none
-    //     // diff mode
-    //     if(button.innerText === '') {
-    //         button.innerText = '+'
-    //     }
-    //     else if (button.innerText === '+') {
-    //         button.innerText = '-'
-    //     }
-    //     else {
-    //         button.innerText = ''
-    //     }
-    // }
 }
 
 function copelClicked(button, name) {
     if (!document.getElementById('switch').checked){
         // state mode
-        if(button.innerText === 'X') {
-            button.innerText = ''
+        if(getButtonState(button)) {
+            setButtonState(button, false)
             presetsData[currentPreset].coples[name] = false
         }
         else {
-            button.innerText = 'X'
+            setButtonState(button, true)
             presetsData[currentPreset].coples[name] = true
 
         }
     }
-    // else {
-    //     // todo or maybe not, as it will complicate usage a lot
-    //     return null
-    //     // diff mode
-    //     if(button.innerText === '') {
-    //         button.innerText = '+'
-    //     }
-    //     else if (button.innerText === '+') {
-    //         button.innerText = '-'
-    //     }
-    //     else {
-    //         button.innerText = ''
-    //     }
-    // }
 }
 
 function clickedPreset(button) {
@@ -249,10 +221,10 @@ function clickedPreset(button) {
 
 function selectPreset(index) {
     for (let item of presetButtonsList){
-        item.style.backgroundColor = 'buttonface'
+        item.style.backgroundColor = buttonNormal
     }
     let button = presetButtonsList[index]
-    button.style.backgroundColor = '#d6d6d6'
+    button.style.backgroundColor = buttonSelected
     nameInput.value = button.textContent
 }
 
@@ -293,7 +265,11 @@ function updatePresetName(e) {
 }
 
 function setButtonState(button, bool) {
-    button.textContent = bool ? 'X' : ''
+    button.style.backgroundColor = bool ? buttonHandleAttached : buttonNormal
+}
+
+function getButtonState(button) {
+    return button.style.backgroundColor === buttonHandleAttached
 }
 
 function addPresetClicked(above) {
@@ -318,6 +294,21 @@ function addPresetClicked(above) {
         presetButtonsList[currentPreset].after(button)
         presetsData.insert(currentPreset + 1, newPresetTable())
     }
+}
+
+function copyPreviousClicked() {
+    if (!confirm("This action will override all existing data in current preset. Do you want to continue?")) {
+        return;
+    }
+    if (currentPreset === 0) {
+        return;
+    }
+    presetsData[currentPreset] = deepCopy(presetsData[currentPreset - 1])
+    clickedPreset(presetButtonsList[currentPreset])
+}
+
+function deepCopy(obj){
+    return JSON.parse(JSON.stringify(obj))
 }
 
 function deletePresetClicked() {
@@ -384,7 +375,6 @@ function loadConfigClicked() {
 function loadSelectedFile(e) {
     const fileReader = new FileReader(); // initialize the object
     const file = e.target.files[0]
-    console.log(file)
     fileReader.readAsText(file); // read file as array buffer
 
     fileReader.onload = () => {
@@ -439,23 +429,29 @@ function generatePDFClicked() {
     //         'it on other platform, and than generate pdf.')
     //     return
     // }
+    displayModal()
+}
 
-
+function confirmPrintClicked() {
     let names = Array()
+    let diffModes = Array()
     presetsData.forEach((x, index) => {
         let presetName = presetButtonsList[index].textContent
         names.push(presetName)
+        diffModes.push(document.getElementById(`mode-checkbox-${index}`).checked)
     })
 
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
+    localStorage.setItem('diffModes', JSON.stringify(diffModes))
+
+    hideModal()
 
     if (!iOS()){
         window.location.href = "./template.html";
     } else {
         window.open("./template.html")
     }
-
 }
 
 window.onunload = () => {
@@ -482,3 +478,57 @@ function setVersion() {
 function tutorialClicked(){
     window.open("https://github.com/maclewan/maclewan.github.io/blob/main/README.md#tutorial")
 }
+
+// Get the modal
+
+
+function displayModal() {
+    let rowsContainer = document.getElementById('modal-rows')
+
+    let first = rowsContainer.firstElementChild
+    while (first) {
+        first.remove()
+        first = rowsContainer.firstElementChild
+    }
+
+    let modalTitleRow = document.createElement('div')
+    modalTitleRow.className = 'modal-row'
+    let label1 = document.createElement('label')
+    let label2 = document.createElement('label')
+    label1.textContent = 'Preset name'
+    label2.textContent = 'Diff mode (+/-)'
+    modalTitleRow.appendChild(label1)
+    modalTitleRow.appendChild(label2)
+    rowsContainer.appendChild(modalTitleRow)
+    rowsContainer.appendChild(document.createElement('hr'))
+
+    Array.from(presetButtonsList).forEach((button, index) => {
+        let modalRow = document.createElement('div')
+        modalRow.className = 'modal-row'
+        let label = document.createElement('label')
+        label.className = 'modal-row-label'
+        label.textContent = button.textContent
+        let modeCheckBox = document.createElement('input')
+        modeCheckBox.type = 'checkbox'
+        modeCheckBox.className = 'modal-row-checkbox'
+        modeCheckBox.id = `mode-checkbox-${index}`
+
+        modalRow.appendChild(label)
+        modalRow.appendChild(modeCheckBox)
+
+        rowsContainer.appendChild(modalRow)
+    })
+    modal.style.display = "block";
+
+}
+
+function hideModal() {
+    modal.style.display = "none";
+}
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target === modal) {
+//     modal.style.display = "none";
+//   }
+// }

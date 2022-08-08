@@ -67,6 +67,12 @@ All actions can be done in `Menu`, just by expanding it on top.
 <hr>
 
 ## Generating PDF
+
+### Diff mode
+Printing support 2 modes, state and difference mode. State mode marks stops which should be attached, 
+diff mode shows which stops should be added and removed - what can be useful for changes within pieces. 
+
+### Print
 Finally, when all presets are done, you can generate pdf file from them, and later print, or open on another device.
 As mentioned above, it's not 100% guaranteed, that this feature will work properly on iOS devices.
 
