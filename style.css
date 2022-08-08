@@ -77,6 +77,8 @@ menu > button {
 
 #presets-container > button {
   margin: 4px 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #presets-menu {

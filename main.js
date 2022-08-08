@@ -1,4 +1,4 @@
-const VERSION = '1.3.0'
+const VERSION = '1.3.1'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -25,8 +25,8 @@ let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
 
-const buttonNormal = !iOS() ? 'buttonface' : '-apple-system-green'
-const buttonSelected = !iOS() ? '#d6d6d6' : '-apple-system-opaque-secondary-fill'
+const buttonNormal = !iOS() ? 'buttonface' : '-apple-system-opaque-secondary-fill'
+const buttonSelected = !iOS() ? 'rgb(214, 214, 214)' : '-apple-system-green'
 const buttonHandleAttached = !iOS() ? 'rgb(145, 85, 2)' : '-apple-system-brown'
 
 main()
