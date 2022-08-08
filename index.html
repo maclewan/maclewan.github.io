@@ -6,11 +6,21 @@
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
     <link rel="stylesheet" href="toggle.css">
     <link rel="stylesheet" href="disabled.css">
 
 </head>
+
 <body>
+    <div id="print-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideModal()">&times;</span>
+            <div id="modal-rows">
+            </div>
+            <button id="confirmPrintButton" onclick="confirmPrintClicked()">Print</button>
+        </div>
+    </div>
     <nav>
         <button id="menu-button"  onclick="toggleMenu(this)">Hide Menu</button>
     </nav>

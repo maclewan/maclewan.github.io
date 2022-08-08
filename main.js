@@ -16,6 +16,8 @@ let coplesButtons = {
 let menuButton = document.getElementById('menu-button')
 let presetsContainer = document.getElementById('presets-container')
 let nameInput = document.getElementById('preset-name-input')
+let modal = document.getElementById("print-modal");
+
 
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
@@ -430,23 +432,29 @@ function generatePDFClicked() {
     //         'it on other platform, and than generate pdf.')
     //     return
     // }
+    displayModal()
+}
 
-
+function confirmPrintClicked() {
     let names = Array()
+    let diffModes = Array()
     presetsData.forEach((x, index) => {
         let presetName = presetButtonsList[index].textContent
         names.push(presetName)
+        diffModes.push(document.getElementById(`mode-checkbox-${index}`).checked)
     })
 
     localStorage.setItem('presetsData', JSON.stringify(presetsData));
     localStorage.setItem('presetNames', JSON.stringify(names))
+    localStorage.setItem('diffModes', JSON.stringify(diffModes))
+
+    hideModal()
 
     if (!iOS()){
         window.location.href = "./template.html";
     } else {
         window.open("./template.html")
     }
-
 }
 
 window.onunload = () => {
@@ -473,3 +481,57 @@ function setVersion() {
 function tutorialClicked(){
     window.open("https://github.com/maclewan/maclewan.github.io/blob/main/README.md#tutorial")
 }
+
+// Get the modal
+
+
+function displayModal() {
+    let rowsContainer = document.getElementById('modal-rows')
+
+    let first = rowsContainer.firstElementChild
+    while (first) {
+        first.remove()
+        first = rowsContainer.firstElementChild
+    }
+
+    let modalTitleRow = document.createElement('div')
+    modalTitleRow.className = 'modal-row'
+    let label1 = document.createElement('label')
+    let label2 = document.createElement('label')
+    label1.textContent = 'Preset name'
+    label2.textContent = 'Diff mode (+/-)'
+    modalTitleRow.appendChild(label1)
+    modalTitleRow.appendChild(label2)
+    rowsContainer.appendChild(modalTitleRow)
+    rowsContainer.appendChild(document.createElement('hr'))
+
+    Array.from(presetButtonsList).forEach((button, index) => {
+        let modalRow = document.createElement('div')
+        modalRow.className = 'modal-row'
+        let label = document.createElement('label')
+        label.className = 'modal-row-label'
+        label.textContent = button.textContent
+        let modeCheckBox = document.createElement('input')
+        modeCheckBox.type = 'checkbox'
+        modeCheckBox.className = 'modal-row-checkbox'
+        modeCheckBox.id = `mode-checkbox-${index}`
+
+        modalRow.appendChild(label)
+        modalRow.appendChild(modeCheckBox)
+
+        rowsContainer.appendChild(modalRow)
+    })
+    modal.style.display = "block";
+
+}
+
+function hideModal() {
+    modal.style.display = "none";
+}
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target === modal) {
+//     modal.style.display = "none";
+//   }
+// }
