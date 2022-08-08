@@ -1,4 +1,4 @@
-const VERSION = '1.3.2'
+const VERSION = '1.3.3'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
