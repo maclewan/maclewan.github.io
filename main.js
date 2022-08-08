@@ -117,9 +117,6 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
     newButton.onclick = function() {handleClicked(newButton, side, j, i)}
     newButton.id = generateButtonId(side, j, i)
 
-    // let buttonText = document.createTextNode('')
-    // newButton.appendChild(buttonText)
-
     let label = document.createElement('label');
 
     label.innerText = dataSide[j][i]
