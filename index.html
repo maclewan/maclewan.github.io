@@ -18,41 +18,44 @@
             <span class="close" onclick="hideModal()">&times;</span>
             <div id="modal-rows">
             </div>
-            <button id="confirmPrintButton" onclick="confirmPrintClicked()">Print</button>
+            <button id="confirm-print-button" onclick="confirmPrintClicked()"></button>
         </div>
     </div>
     <nav>
-        <button id="menu-button"  onclick="toggleMenu(this)">Hide Menu</button>
+        <button id="menu-button" onclick="toggleMenu(this)"></button>
+        <div id="nav-spacer"></div>
+        <button id="pl-language-button" onclick="languageClicked('pl')" class="language-button">PL</button>
+        <button id="en-language-button" onclick="languageClicked('en')" class="language-button">EN</button>
     </nav>
     <menu id="menu_mobile" style="display: none">
-        <button onclick="tutorialClicked()">Watch tutorial</button>
-        <button onclick="aboutClicked()">About</button>
-        <button onclick="loadConfigClicked()">Load config *.englerjson file</button>
-        <button onclick="saveConfigClicked()">Save config *.englerjson file</button>
-        <button onclick="generatePDFClicked()">Generate PDF file</button>
+        <button class="tutorial-button" onclick="tutorialClicked()"></button>
+        <button class="about-button" onclick="aboutClicked()"></button>
+        <button class="load-button" onclick="loadConfigClicked()">Load config *.englerjson file</button>
+        <button class="save-button" onclick="saveConfigClicked()">Save config *.englerjson file</button>
+        <button class="generate-button" onclick="generatePDFClicked()">Generate PDF file</button>
 
     </menu>
     <div id="flex-container">
         <div id="presets-section">
             <menu id="menu_desktop" style="display: none">
-                <button onclick="tutorialClicked()">Watch tutorial</button>
-                <button onclick="aboutClicked()">About</button>
-                <button onclick="loadConfigClicked()">Load config *.englerjson file</button>
-                <button onclick="saveConfigClicked()">Save config *.englerjson file</button>
-                <button onclick="generatePDFClicked()">Generate PDF file</button>
+                <button class="tutorial-button" onclick="tutorialClicked()"></button>
+                <button class="about-button" onclick="aboutClicked()"></button>
+                <button class="load-button" onclick="loadConfigClicked()">Load config *.englerjson file</button>
+                <button class="save-button" onclick="saveConfigClicked()">Save config *.englerjson file</button>
+                <button class="generate-button" onclick="generatePDFClicked()">Generate PDF file</button>
 
             </menu>
             <div id="presets-container">
                 <button onclick="clickedPreset(this)">New preset 1</button>
             </div>
             <div id="presets-menu">
-                <button onclick="addPresetClicked(true)">Add empty above</button>
-                <button onclick="addPresetClicked(false)">Add empty below</button>
-                <button onclick="copyPreviousClicked()">Copy previous preset</button>
+                <button id="add-preset-above-button" onclick="addPresetClicked(true)">Add empty above</button>
+                <button id="add-preset-below-button" onclick="addPresetClicked(false)">Add empty below</button>
+                <button id="copy-preset-button" onclick="copyPreviousClicked()">Copy previous preset</button>
 
                 <input type="text" id="preset-name-input" value="New preset 1">
-                <button onclick="deletePresetClicked()">Delete preset</button>
-                <button onclick="clearPresetClicked()">Clear preset</button>
+                <button id='delete-preset-button' onclick="deletePresetClicked()">Delete preset</button>
+                <button id='clear-preset-button' onclick="clearPresetClicked()">Clear preset</button>
                 <div id="notation-mode" class="state-switch">
                     <input type="checkbox" id="switch" />
                     <label for="switch">Toggle</label>

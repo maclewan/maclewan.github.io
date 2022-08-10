@@ -1,0 +1,31 @@
+{"en": {
+        "ids": {
+            "confirm-print-button": "Print",
+            "menu-button": "Hide menu",
+            "add-preset-above-button": "Add empty above",
+            "add-preset-below-button": "Add empty below",
+            "copy-preset-button": "Copy previous",
+            "delete-preset-button": "Delete preset",
+            "clear-preset-button": "Clear preset"
+
+        },
+        "classes": {
+            "tutorial-button": "Watch tutorial",
+            "about-button": "About",
+            "load-button": "Load config (*.englerjson) file",
+            "save-button": "Save config (*.englerjson) file",
+            "generate-button": "Generate PDF file"
+        },
+        "extras": {
+            "menu-button-show": "Show menu",
+            "copy-previous": "This action will override all existing data in current preset. Do you want to continue?",
+            "delete-last-preset": "Cannot delete only remaining preset!",
+            "delete-preset": "Are you sure? All data of this preset will be lost.",
+            "clear-preset": "Are you sure? All data in this preset will be cleared.",
+            "provide-filename": "Provide file name:",
+            "config-version-wrong": "Cannot load this file, as config version is different as current!",
+            "preset-name-label": "Preset name",
+            "diff-mode-label": "Diff mode (+/-)"
+        }
+    }
+}

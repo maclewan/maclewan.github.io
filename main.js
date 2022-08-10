@@ -1,4 +1,9 @@
-const VERSION = '1.3.4'
+
+const strings = {}
+
+let language = 'pl'
+
+const VERSION = '1.4.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -40,6 +45,7 @@ async function main() {
     setMediaListener()
     toggleMenu(menuButton)
     tryLoadingOldSession()
+    loadStrings()
     setVersion()
 }
 
@@ -53,6 +59,17 @@ function iOS() {
     'iPod'
   ].includes(navigator.platform)
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+function loadStrings() {
+    for (const [id, val] of Object.entries(strings[language].ids)){
+        document.getElementById(id).textContent = val
+    }
+    for (const [className, val] of Object.entries(strings[language].classes)){
+        Array.from(document.getElementsByClassName(className)).forEach(e => {
+            e.textContent = val
+        })
+    }
 }
 
 function newPresetTable() {
@@ -86,18 +103,31 @@ function disableRegisters() {
 function setupPresets() {
     presetsData.push(newPresetTable())
     nameInput.addEventListener('change', updatePresetName)
-
-
 }
 
 function setData(dataNew) {
     stopsData = dataNew
 }
 
+function setLanguageData(data) {
+    const key = Object.keys(data)[0]
+    strings[key] = data[key]
+}
+
 async function loadData() {
     await fetch('./stops.json')
     .then(response => response.json())
     .then(data => setData(data))
+    .catch(error => console.log(error));
+
+    await fetch('./lang.pl.json')
+    .then(response => response.json())
+    .then(data => setLanguageData(data))
+    .catch(error => console.log(error));
+
+    await fetch('./lang.en.json')
+    .then(response => response.json())
+    .then(data => setLanguageData(data))
     .catch(error => console.log(error));
 }
 
@@ -163,11 +193,11 @@ function toggleMenu(menuButton) {
     let menu = document.getElementById(id);
     if (menu.style.display === "none"){
         menu.style.display = "flex"
-        menuButton.textContent = 'Hide Menu'
+        menuButton.textContent = strings[language].ids['menu-button']
     }
     else {
         menu.style.display = "none"
-        menuButton.textContent = 'Show Menu'
+        menuButton.textContent = strings[language].extras['menu-button-show']
     }
 }
 
@@ -176,7 +206,7 @@ function setMediaListener() {
     let menus = document.getElementsByTagName('menu')
 
     matchMedia.addEventListener( "change", () => {
-        menuButton.textContent = 'Show Menu'
+        // menuButton.textContent = strings[language].extras['menu-button-show']
         menus[0].style.display = 'none'
         menus[1].style.display = 'none'
         toggleMenu(menuButton)
@@ -229,7 +259,7 @@ function selectPreset(index) {
 }
 
 function clearPresetClicked(){
-    if (!confirm("Are you sure? All data in this preset will be cleared.")) {
+    if (!confirm(strings[language].extras['clear-preset'])) {
         return;
     }
     presetsData[currentPreset] = newPresetTable()
@@ -297,7 +327,7 @@ function addPresetClicked(above) {
 }
 
 function copyPreviousClicked() {
-    if (!confirm("This action will override all existing data in current preset. Do you want to continue?")) {
+    if (!confirm(strings[language].extras['copy-previous'])) {
         return;
     }
     if (currentPreset === 0) {
@@ -314,10 +344,10 @@ function deepCopy(obj){
 function deletePresetClicked() {
     let oldIndex = currentPreset
     if (presetButtonsList.length === 1) {
-        alert('Cannot delete only remaining preset!')
+        alert(strings[language].extras['delete-last-preset'])
         return null;
     }
-    if (!confirm("Are you sure? All data of this preset will be lost.")) {
+    if (!confirm(strings[language].extras['delete-preset'])) {
         return;
     }
 
@@ -331,7 +361,7 @@ function saveConfigClicked() {
     // prepare data
     let preparedData = generateEnglerJsonData()
     // download data
-    let fname = prompt("Provide file name:")
+    let fname = prompt(strings[language].extras['provide-filename'])
     if (!fname) {
         return
     }
@@ -386,7 +416,7 @@ function loadSelectedFile(e) {
 function parseEnglerJsonData(loadedData){
     // validate version
     if (loadedData.meta.configVersion !== '1.0') {
-        alert('Cannot load this file, as config version is different as current!')
+        alert(strings[language].extras['config-version-wrong'])
         return
     }
 
@@ -457,16 +487,29 @@ function confirmPrintClicked() {
 window.onunload = () => {
     let preparedData = generateEnglerJsonData()
     localStorage.setItem('sessionData', JSON.stringify(preparedData));
+    localStorage.setItem('language', language)
     setTimeout(null, 10000)
 }
 
 function tryLoadingOldSession() {
+    let oldLanguage = localStorage.getItem('language')
+    if (oldLanguage === null){
+        console.log('No language in storage')
+    }
+    else {
+        language = oldLanguage
+    }
+
     let oldSessionData = localStorage.getItem('sessionData')
-    if(oldSessionData === null){
+    if (oldSessionData === null){
         console.log('No data in storage')
         return
     }
     let objectData = JSON.parse(oldSessionData)
+    if (Object.keys(objectData.presets).length === 0) {
+        console.log('Faulty old session data')
+        return
+    }
     parseEnglerJsonData(objectData)
 
 }
@@ -496,8 +539,8 @@ function displayModal() {
     modalTitleRow.className = 'modal-row'
     let label1 = document.createElement('label')
     let label2 = document.createElement('label')
-    label1.textContent = 'Preset name'
-    label2.textContent = 'Diff mode (+/-)'
+    label1.textContent = strings[language].extras['preset-name-label']
+    label2.textContent = strings[language].extras['diff-mode-label']
     modalTitleRow.appendChild(label1)
     modalTitleRow.appendChild(label2)
     rowsContainer.appendChild(modalTitleRow)
@@ -525,6 +568,11 @@ function displayModal() {
 
 function hideModal() {
     modal.style.display = "none";
+}
+
+function languageClicked(lang) {
+    language = lang
+    loadStrings()
 }
 //
 // // When the user clicks anywhere outside of the modal, close it
