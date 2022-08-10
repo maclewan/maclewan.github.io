@@ -1,9 +1,9 @@
 
 const strings = {}
 
-const language = 'pl'
+let language = 'pl'
 
-const VERSION = '1.3.4'
+const VERSION = '1.4.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -208,7 +208,7 @@ function setMediaListener() {
     let menus = document.getElementsByTagName('menu')
 
     matchMedia.addEventListener( "change", () => {
-        menuButton.textContent = 'Show Menu'
+        // menuButton.textContent = strings[language].extras['menu-button-show']
         menus[0].style.display = 'none'
         menus[1].style.display = 'none'
         toggleMenu(menuButton)
@@ -261,7 +261,7 @@ function selectPreset(index) {
 }
 
 function clearPresetClicked(){
-    if (!confirm("Are you sure? All data in this preset will be cleared.")) {
+    if (!confirm(strings[language].extras['clear-preset'])) {
         return;
     }
     presetsData[currentPreset] = newPresetTable()
@@ -329,7 +329,7 @@ function addPresetClicked(above) {
 }
 
 function copyPreviousClicked() {
-    if (!confirm("This action will override all existing data in current preset. Do you want to continue?")) {
+    if (!confirm(strings[language].extras['copy-previous'])) {
         return;
     }
     if (currentPreset === 0) {
@@ -346,10 +346,10 @@ function deepCopy(obj){
 function deletePresetClicked() {
     let oldIndex = currentPreset
     if (presetButtonsList.length === 1) {
-        alert('Cannot delete only remaining preset!')
+        alert(strings[language].extras['delete-last-preset'])
         return null;
     }
-    if (!confirm("Are you sure? All data of this preset will be lost.")) {
+    if (!confirm(strings[language].extras['delete-preset'])) {
         return;
     }
 
@@ -363,7 +363,7 @@ function saveConfigClicked() {
     // prepare data
     let preparedData = generateEnglerJsonData()
     // download data
-    let fname = prompt("Provide file name:")
+    let fname = prompt(strings[language].extras['provide-filename'])
     if (!fname) {
         return
     }
@@ -418,7 +418,7 @@ function loadSelectedFile(e) {
 function parseEnglerJsonData(loadedData){
     // validate version
     if (loadedData.meta.configVersion !== '1.0') {
-        alert('Cannot load this file, as config version is different as current!')
+        alert(strings[language].extras['config-version-wrong'])
         return
     }
 
@@ -494,10 +494,15 @@ window.onunload = () => {
 
 function tryLoadingOldSession() {
     let oldSessionData = localStorage.getItem('sessionData')
-    if(!oldSessionData){
+    if (oldSessionData === null){
+        console.log('No data in storage')
         return
     }
     let objectData = JSON.parse(oldSessionData)
+    if (Object.keys(objectData.presets).length === 0) {
+        console.log('Faulty old session data')
+        return
+    }
     parseEnglerJsonData(objectData)
 
 }
@@ -527,8 +532,8 @@ function displayModal() {
     modalTitleRow.className = 'modal-row'
     let label1 = document.createElement('label')
     let label2 = document.createElement('label')
-    label1.textContent = 'Preset name'
-    label2.textContent = 'Diff mode (+/-)'
+    label1.textContent = strings[language].extras['preset-name-label']
+    label2.textContent = strings[language].extras['diff-mode-label']
     modalTitleRow.appendChild(label1)
     modalTitleRow.appendChild(label2)
     rowsContainer.appendChild(modalTitleRow)
@@ -556,6 +561,11 @@ function displayModal() {
 
 function hideModal() {
     modal.style.display = "none";
+}
+
+function languageClicked(lang) {
+    language = lang
+    loadStrings()
 }
 //
 // // When the user clicks anywhere outside of the modal, close it

@@ -20,11 +20,21 @@ input {
 
 nav {
   margin: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: row;
 }
 
-nav > button {
+#menu-button {
   width: 30vw;
   margin: 5px;
+}
+.language-button {
+  margin: 5px;
+  width: 8vw;
+}
+
+#nav-spacer {
+  flex: 1;
 }
 
 menu {
@@ -207,9 +217,14 @@ menu > button {
     width: 12vw;
   }
 
-  nav > button {
+  #menu-button {
     width: 14vw;
     margin: 0
+  }
+
+  .language-button {
+    margin: 5px;
+    width: 3vw;
   }
 
   input {
@@ -301,7 +316,7 @@ menu > button {
   }
 
   .register-panel {
-    width: 37vw;
+    width: 36vw;
   }
 
   .cople-div > button {
