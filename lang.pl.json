@@ -2,8 +2,8 @@
         "ids": {
             "confirm-print-button": "Drukuj",
             "menu-button": "Ukryj menu",
-            "add-preset-above-button": "Dodaj pusty poniżej",
-            "add-preset-below-button": "Dodaj pusty powyżej",
+            "add-preset-above-button": "Dodaj pusty powyżej",
+            "add-preset-below-button": "Dodaj pusty poniżej",
             "copy-preset-button": "Skopiuj poprzedni",
             "delete-preset-button": "Usuń kombinację",
             "clear-preset-button": "Wyczyść kombinację"
