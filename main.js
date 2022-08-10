@@ -1,3 +1,8 @@
+
+const strings = {}
+
+const language = 'pl'
+
 const VERSION = '1.3.4'
 
 Array.prototype.insert = function(index) {
@@ -33,6 +38,7 @@ main()
 
 async function main() {
     await loadData()
+    loadStrings()
     generateMainRegisters()
     setupPresets()
     disableRegisters()
@@ -53,6 +59,17 @@ function iOS() {
     'iPod'
   ].includes(navigator.platform)
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+function loadStrings() {
+    for (const [id, val] of Object.entries(strings[language].ids)){
+        document.getElementById(id).textContent = val
+    }
+    for (const [className, val] of Object.entries(strings[language].classes)){
+        Array.from(document.getElementsByClassName(className)).forEach(e => {
+            e.textContent = val
+        })
+    }
 }
 
 function newPresetTable() {
@@ -94,10 +111,25 @@ function setData(dataNew) {
     stopsData = dataNew
 }
 
+function setLanguageData(data) {
+    const key = Object.keys(data)[0]
+    strings[key] = data[key]
+}
+
 async function loadData() {
     await fetch('./stops.json')
     .then(response => response.json())
     .then(data => setData(data))
+    .catch(error => console.log(error));
+
+    await fetch('./lang.pl.json')
+    .then(response => response.json())
+    .then(data => setLanguageData(data))
+    .catch(error => console.log(error));
+
+    await fetch('./lang.en.json')
+    .then(response => response.json())
+    .then(data => setLanguageData(data))
     .catch(error => console.log(error));
 }
 
@@ -163,11 +195,11 @@ function toggleMenu(menuButton) {
     let menu = document.getElementById(id);
     if (menu.style.display === "none"){
         menu.style.display = "flex"
-        menuButton.textContent = 'Hide Menu'
+        menuButton.textContent = strings[language].ids['menu-button']
     }
     else {
         menu.style.display = "none"
-        menuButton.textContent = 'Show Menu'
+        menuButton.textContent = strings[language].extras['menu-button-show']
     }
 }
 
@@ -462,8 +494,7 @@ window.onunload = () => {
 
 function tryLoadingOldSession() {
     let oldSessionData = localStorage.getItem('sessionData')
-    if(oldSessionData === null){
-        console.log('No data in storage')
+    if(!oldSessionData){
         return
     }
     let objectData = JSON.parse(oldSessionData)

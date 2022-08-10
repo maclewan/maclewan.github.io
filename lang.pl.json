@@ -1,0 +1,24 @@
+{"pl": {
+        "ids": {
+            "confirm-print-button": "Drukuj",
+            "menu-button": "Ukryj menu",
+            "add-preset-above-button": "Dodaj pusty poniżej",
+            "add-preset-below-button": "Dodaj pusty powyżej",
+            "copy-preset-button": "Skopiuj poprzedni",
+            "delete-preset-button": "Usuń kombinację",
+            "clear-preset-button": "Wyczyść kombinację"
+    
+        },
+        "classes": {
+            "tutorial-button": "Zobacz poradnik",
+            "about-button": "O aplikacji",
+            "load-button": "Załaduj plik konfiguracyjny (*.englerjson)",
+            "save-button": "Zapisz plik konfiguracyjny (*.englerjson)",
+            "generate-button": "Wygeneruj plik PDF"
+        },
+        "extras": {
+            "menu-button-show": "Pokaż menu"
+    
+        }
+    }
+}
