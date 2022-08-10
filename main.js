@@ -462,7 +462,8 @@ window.onunload = () => {
 
 function tryLoadingOldSession() {
     let oldSessionData = localStorage.getItem('sessionData')
-    if(!oldSessionData){
+    if(oldSessionData === null){
+        console.log('No data in storage')
         return
     }
     let objectData = JSON.parse(oldSessionData)
