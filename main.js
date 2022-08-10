@@ -38,7 +38,6 @@ main()
 
 async function main() {
     await loadData()
-    loadStrings()
     generateMainRegisters()
     setupPresets()
     disableRegisters()
@@ -46,6 +45,7 @@ async function main() {
     setMediaListener()
     toggleMenu(menuButton)
     tryLoadingOldSession()
+    loadStrings()
     setVersion()
 }
 
@@ -103,8 +103,6 @@ function disableRegisters() {
 function setupPresets() {
     presetsData.push(newPresetTable())
     nameInput.addEventListener('change', updatePresetName)
-
-
 }
 
 function setData(dataNew) {
@@ -489,10 +487,19 @@ function confirmPrintClicked() {
 window.onunload = () => {
     let preparedData = generateEnglerJsonData()
     localStorage.setItem('sessionData', JSON.stringify(preparedData));
+    localStorage.setItem('language', language)
     setTimeout(null, 10000)
 }
 
 function tryLoadingOldSession() {
+    let oldLanguage = localStorage.getItem('language')
+    if (oldLanguage === null){
+        console.log('No language in storage')
+    }
+    else {
+        language = oldLanguage
+    }
+
     let oldSessionData = localStorage.getItem('sessionData')
     if (oldSessionData === null){
         console.log('No data in storage')
