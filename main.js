@@ -263,6 +263,8 @@ function clearPresetClicked(){
         return;
     }
     presetsData[currentPreset] = newPresetTable()
+    console.log(currentPreset)
+    console.log(presetButtonsList)
     presetButtonsList[currentPreset].click()
 }
 
@@ -355,6 +357,7 @@ function deletePresetClicked() {
     presetButtonsList[oldIndex + delta].click()
     presetsData = presetsData.filter((e, i) => i !== oldIndex)
     presetButtonsList[oldIndex].parentNode.removeChild(presetButtonsList[oldIndex])
+    currentPreset = oldIndex === 0 ? oldIndex : oldIndex + 1 // override currentPreset, as button was removed
 }
 
 function saveConfigClicked() {
@@ -574,10 +577,3 @@ function languageClicked(lang) {
     language = lang
     loadStrings()
 }
-//
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target === modal) {
-//     modal.style.display = "none";
-//   }
-// }
