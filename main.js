@@ -522,7 +522,13 @@ function setVersion() {
 }
 
 function tutorialClicked(){
-    window.open("https://github.com/maclewan/maclewan.github.io/blob/main/README.md#tutorial")
+    if (language === 'pl'){
+        window.open("https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUKCJA.md#poradniczek")
+    }
+    else {
+        window.open("https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUCTION.md#tutorial")
+    }
+
 }
 
 // Get the modal

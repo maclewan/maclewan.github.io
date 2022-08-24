@@ -1,3 +1,6 @@
+# English
+[Click here](INSTRUCTION.md)
+
 # e-registrant
 Proste narzędzie do zapisywania registracji i generowania plików PDF do organów Englera we Wrocławiu.
 
@@ -55,21 +58,20 @@ Dzięki temu można np kazdy utwor zapisac jako osobny plik konfiguracyjny. Daje
 zachowania kombinacji na potem.
 
 Wszystkie te akcje dostępne są w `Menu`.
+![](menu.gif)
 
 <hr>
 
-## Generating PDF
+## Generowanie PDF
 
-### Diff mode
-Printing support 2 modes, state and difference mode. State mode marks stops which should be attached, 
-diff mode shows which stops should be added and removed - what can be useful for changes within pieces. 
+### Tryb zmian (+/-)
+Generowanie pliku PDF wspiera 2 tryby, tryb `stanu` i tryb `zmian`.
+Tryb stanu zaznacza które głosy powinny być załączone w danym momencie. Tryb stanu
+pokazuje różnice za pomocą `+` oraz `-` względem poprzednią kombinacją.
 
-### Print
-Finally, when all presets are done, you can generate pdf file from them, and later print, or open on another device.
-As mentioned above, it's not 100% guaranteed, that this feature will work properly on iOS devices.
-
+![](print-modes.gif)
 ### iOS
 W teorii wszystko działa, chociaz jakość PDF może być gorsza, polecam zapisac plik `.englerjson`,
-otworzyć na komputerze i wygenerowac PDF.
+otworzyć na komputerze i tam wygenerowac PDF.
 
 <hr>
