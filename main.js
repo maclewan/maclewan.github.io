@@ -3,7 +3,7 @@ const strings = {}
 
 let language = 'pl'
 
-const VERSION = '1.4.0'
+const VERSION = '1.5.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
