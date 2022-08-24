@@ -263,8 +263,6 @@ function clearPresetClicked(){
         return;
     }
     presetsData[currentPreset] = newPresetTable()
-    console.log(currentPreset)
-    console.log(presetButtonsList)
     presetButtonsList[currentPreset].click()
 }
 
