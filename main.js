@@ -3,7 +3,7 @@ const strings = {}
 
 let language = 'pl'
 
-const VERSION = '1.4.0'
+const VERSION = '1.5.0'
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -351,10 +351,10 @@ function deletePresetClicked() {
         return;
     }
 
-    let delta = oldIndex === 0 ? 1 : -1
-    presetButtonsList[oldIndex + delta].click()
-    presetsData = presetsData.filter((e, i) => i !== oldIndex)
+    let delta = oldIndex === 0 ? 0 : -1
     presetButtonsList[oldIndex].parentNode.removeChild(presetButtonsList[oldIndex])
+    presetsData = presetsData.filter((e, i) => i !== oldIndex)
+    presetButtonsList[oldIndex + delta].click()
 }
 
 function saveConfigClicked() {
@@ -520,7 +520,13 @@ function setVersion() {
 }
 
 function tutorialClicked(){
-    window.open("https://github.com/maclewan/maclewan.github.io/blob/main/README.md#tutorial")
+    if (language === 'pl'){
+        window.open("https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUKCJA.md#poradniczek")
+    }
+    else {
+        window.open("https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUCTION.md#tutorial")
+    }
+
 }
 
 // Get the modal
@@ -574,10 +580,3 @@ function languageClicked(lang) {
     language = lang
     loadStrings()
 }
-//
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target === modal) {
-//     modal.style.display = "none";
-//   }
-// }
