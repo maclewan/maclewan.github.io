@@ -353,11 +353,10 @@ function deletePresetClicked() {
         return;
     }
 
-    let delta = oldIndex === 0 ? 1 : -1
-    presetButtonsList[oldIndex + delta].click()
-    presetsData = presetsData.filter((e, i) => i !== oldIndex)
+    let delta = oldIndex === 0 ? 0 : -1
     presetButtonsList[oldIndex].parentNode.removeChild(presetButtonsList[oldIndex])
-    currentPreset = oldIndex === 0 ? oldIndex : oldIndex + 1 // override currentPreset, as button was removed
+    presetsData = presetsData.filter((e, i) => i !== oldIndex)
+    presetButtonsList[oldIndex + delta].click()
 }
 
 function saveConfigClicked() {
