@@ -113,7 +113,7 @@ function fillPositiv(side, preset){
 function fillPresetName(preset){
     let container = document.getElementById(`container-${preset}`)
     const label = container.querySelector('.preset-name')
-    let name = presetNames[preset] + (diffModes[preset] ? ' (diff)' : '')
+    let name = presetNames[preset] + (diffModes[preset] ? ' (+/-)' : '')
     label.textContent = name
 
 }
