@@ -1,4 +1,4 @@
-const VERSION = '1.6.0'
+const VERSION = '1.7.0'
 
 const buttonNormal = 'rgb(240, 240, 240)'
 const buttonSelected = 'rgb(214, 214, 214)'
