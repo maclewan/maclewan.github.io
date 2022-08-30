@@ -15,6 +15,10 @@ button, label, input {
   border-radius: 5px;
 }
 
+button, input {
+  box-shadow: 3px 3px 2px lightgray;
+}
+
 button {
   padding-bottom: 2px;
 }
@@ -47,6 +51,7 @@ menu {
   /*background-color: lightgreen;*/
   height: fit-content;
   border: 1px solid black;
+  border-radius: 5px;
 
   padding: 10px;
   margin: 5px 10px;
@@ -88,6 +93,7 @@ menu > button {
 #presets-container {
   /*background-color: lightcoral;*/
   border: 1px solid black;
+  border-radius: 5px;
   overflow-y: scroll;
 }
 
@@ -100,6 +106,7 @@ menu > button {
 #presets-menu {
   /*background-color: brown;*/
   border: 1px solid black;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
 }
@@ -115,6 +122,7 @@ menu > button {
 #registers-flex {
   /*background-color: aqua;*/
   border: 1px solid black;
+  border-radius: 5px;
   width: available;
   display: flex;
   flex-direction: column;
@@ -123,6 +131,13 @@ menu > button {
   padding: 0;
   margin: 15px;
 
+}
+
+.div-line{
+  border-bottom: 1px solid darkgray;
+  border-left: 0;
+  height: 1px;
+  width: 100%
 }
 
 .register-panel {
@@ -192,7 +207,6 @@ menu > button {
   min-height: 0;
   padding: 10px;
   margin: 0 5px;
-  border: 1px solid black;
 }
 
 .cople-div > button {
@@ -240,6 +254,13 @@ menu > button {
   #flex-container {
     flex-direction: row;
     align-content: center;
+  }
+
+  .div-line{
+    border-left: 1px solid darkgray;
+    border-bottom: 0;
+    height: 90vh;
+    width: 1px;
   }
 
   #presets-section {
