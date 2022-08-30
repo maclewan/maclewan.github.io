@@ -1,9 +1,24 @@
+const VERSION = '1.5.1'
+
+const buttonNormal = 'rgb(240, 240, 240)'
+const buttonSelected = 'rgb(214, 214, 214)'
+const buttonHandleAttached = 'rgb(145, 85, 2)'
 
 const strings = {}
 
-let language = 'pl'
+const PRESETS_DATA_KEY = 'presetsData'
+const PRESETS_NAMES_KEY = 'presetNames'
+const DIFFMODES_NAMES_KEY = 'diffModes'
+const SESSION_DATA_KEY = 'sessionData'
+const LANGUAGE_KEY = 'language'
 
-const VERSION = '1.5.0'
+const tutorials = {
+    pl: 'https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUKCJA.md#poradniczek',
+    en: 'https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUCTION.md#tutorial'
+}
+
+let language = 'pl'
+let tutorial = ''
 
 Array.prototype.insert = function(index) {
     this.splice.apply(this, [index, 0].concat(
@@ -11,7 +26,6 @@ Array.prototype.insert = function(index) {
     return this;
 };
 
-let stopsData = []
 let leftPanel = document.getElementById('left-side')
 let rightPanel = document.getElementById('right-side')
 let coplesButtons = {
@@ -23,16 +37,13 @@ let presetsContainer = document.getElementById('presets-container')
 let nameInput = document.getElementById('preset-name-input')
 let modal = document.getElementById("print-modal");
 
-
+let stopsData = []
 let presetButtonsList = presetsContainer.children
 let leftPanelButtons = []
 let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
 
-const buttonNormal = 'rgb(240, 240, 240)'
-const buttonSelected = 'rgb(214, 214, 214)'
-const buttonHandleAttached = 'rgb(145, 85, 2)'
 
 main()
 
@@ -70,6 +81,7 @@ function loadStrings() {
             e.textContent = val
         })
     }
+    tutorial = tutorials[language]
 }
 
 function newPresetTable() {
@@ -206,7 +218,6 @@ function setMediaListener() {
     let menus = document.getElementsByTagName('menu')
 
     matchMedia.addEventListener( "change", () => {
-        // menuButton.textContent = strings[language].extras['menu-button-show']
         menus[0].style.display = 'none'
         menus[1].style.display = 'none'
         toggleMenu(menuButton)
@@ -229,16 +240,10 @@ function handleClicked(button, side, row, column) {
 
 function copelClicked(button, name) {
     if (!document.getElementById('switch').checked){
-        // state mode
-        if(getButtonState(button)) {
-            setButtonState(button, false)
-            presetsData[currentPreset].coples[name] = false
-        }
-        else {
-            setButtonState(button, true)
-            presetsData[currentPreset].coples[name] = true
+        let checked = getButtonState(button)
 
-        }
+        setButtonState(button, !checked)
+        presetsData[currentPreset].coples[name] = !checked
     }
 }
 
@@ -246,7 +251,6 @@ function clickedPreset(button) {
     currentPreset = Array.from(presetButtonsList).indexOf(button)
     updateBoxesState(currentPreset)
     selectPreset(currentPreset)
-
 }
 
 function selectPreset(index) {
@@ -392,14 +396,12 @@ function generateEnglerJsonData() {
     return preparedData
 }
 
-
 function loadConfigClicked() {
     const input = document.createElement('input');
     input.addEventListener('change', loadSelectedFile)
     input.type = 'file'
     input.accept = '.englerjson'
     input.click()
-
 }
 
 function loadSelectedFile(e) {
@@ -451,14 +453,7 @@ function aboutClicked() {
         "and also learn little bit of JavaScript in real live case.")
 }
 
-
-
 function generatePDFClicked() {
-    // if(iOS()){
-    //     alert('PDF generating is currently disabled on IOS platform. Please save config file, and open' +
-    //         'it on other platform, and than generate pdf.')
-    //     return
-    // }
     displayModal()
 }
 
@@ -471,9 +466,9 @@ function confirmPrintClicked() {
         diffModes.push(document.getElementById(`mode-checkbox-${index}`).checked)
     })
 
-    localStorage.setItem('presetsData', JSON.stringify(presetsData));
-    localStorage.setItem('presetNames', JSON.stringify(names))
-    localStorage.setItem('diffModes', JSON.stringify(diffModes))
+    localStorage.setItem(PRESETS_DATA_KEY, JSON.stringify(presetsData));
+    localStorage.setItem(PRESETS_NAMES_KEY, JSON.stringify(names))
+    localStorage.setItem(DIFFMODES_NAMES_KEY, JSON.stringify(diffModes))
 
     hideModal()
 
@@ -486,13 +481,13 @@ function confirmPrintClicked() {
 
 window.onunload = () => {
     let preparedData = generateEnglerJsonData()
-    localStorage.setItem('sessionData', JSON.stringify(preparedData));
-    localStorage.setItem('language', language)
+    localStorage.setItem(SESSION_DATA_KEY, JSON.stringify(preparedData));
+    localStorage.setItem(LANGUAGE_KEY, language)
     setTimeout(null, 10000)
 }
 
 function tryLoadingOldSession() {
-    let oldLanguage = localStorage.getItem('language')
+    let oldLanguage = localStorage.getItem(LANGUAGE_KEY)
     if (oldLanguage === null){
         console.log('No language in storage')
     }
@@ -500,7 +495,7 @@ function tryLoadingOldSession() {
         language = oldLanguage
     }
 
-    let oldSessionData = localStorage.getItem('sessionData')
+    let oldSessionData = localStorage.getItem(SESSION_DATA_KEY)
     if (oldSessionData === null){
         console.log('No data in storage')
         return
@@ -511,7 +506,6 @@ function tryLoadingOldSession() {
         return
     }
     parseEnglerJsonData(objectData)
-
 }
 
 function setVersion() {
@@ -528,9 +522,6 @@ function tutorialClicked(){
     }
 
 }
-
-// Get the modal
-
 
 function displayModal() {
     let rowsContainer = document.getElementById('modal-rows')
@@ -569,7 +560,6 @@ function displayModal() {
         rowsContainer.appendChild(modalRow)
     })
     modal.style.display = "block";
-
 }
 
 function hideModal() {
