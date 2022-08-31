@@ -2,7 +2,6 @@ const VERSION = '2.0.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
-const buttonHandleAttached = 'rgb(145, 85, 2)'
 
 const knobOn = "url('./images/knob-on.png')"
 const knobOff = "url('./images/knob-off.png')"
@@ -46,7 +45,6 @@ let leftPanelButtons = []
 let rightPanelButtons = []
 let presetsData = Array()
 let currentPreset = 0
-
 
 index()
 
