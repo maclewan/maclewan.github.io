@@ -16,12 +16,11 @@ function iOS() {
     'iPhone',
     'iPod'
   ].includes(navigator.platform)
-  // iPad on iOS 13 detection
   || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 async function terribleImport(){
-    const response = await fetch('./html2pdf.js')
+    const response = await fetch('./html2pdf/html2pdf.js')
     const text = await response.text()
     eval(text)
 }
@@ -36,7 +35,6 @@ function loadData() {
     presetsData = JSON.parse(localStorage.getItem(PRESETS_DATA_KEY))
     presetNames = JSON.parse(localStorage.getItem(PRESETS_NAMES_KEY))
     diffModes = JSON.parse(localStorage.getItem(DIFFMODES_NAMES_KEY))
-
 }
 
 function setFieldValue(cell, value) {
@@ -53,11 +51,11 @@ function getValue(preset, side, y, x) {
         return current ? '✖' : ''
     }
     else {
-        let previous = x? presetsData[preset-1][side][y][x] : presetsData[preset-1][side][y]
-
         if (preset === 0) {
             return current ? '➕' : ''
         }
+
+        let previous = x? presetsData[preset-1][side][y][x] : presetsData[preset-1][side][y]
         if (previous === current) {
             return ''
         }
@@ -91,7 +89,6 @@ function fillCopels(preset){
 
     setFieldValue(ow, getValue(preset, 'coples', 'ow', null))
     setFieldValue(rp, getValue(preset, 'coples', 'rp', null))
-
 }
 
 function fillPositiv(side, preset){
@@ -107,7 +104,6 @@ function fillPositiv(side, preset){
         let value = getValue(preset, side, 7, column+delta)
         setFieldValue(cells[column], value)
     }
-
 }
 
 function fillPresetName(preset){
@@ -115,7 +111,6 @@ function fillPresetName(preset){
     const label = container.querySelector('.preset-name')
     let name = presetNames[preset] + (diffModes[preset] ? ' (+/-)' : '')
     label.textContent = name
-
 }
 
 async function generateHTML() {
@@ -194,5 +189,4 @@ async function generateHTML() {
     if (!iOS()){
         window.location.href = "./index.html"
     }
-
 }
