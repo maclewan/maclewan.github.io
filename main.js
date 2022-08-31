@@ -5,7 +5,7 @@ const buttonSelected = 'rgba(162,162,162,0.6)'
 const buttonHandleAttached = 'rgb(145, 85, 2)'
 
 const knobOn = "url('./images/knob-on.png')"
-const knobOff = "url('./images/knob-off-2-small.png')"
+const knobOff = "url('./images/knob-off.png')"
 
 const strings = {}
 
@@ -161,6 +161,7 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
     let newButton = document.createElement('button');
     newButton.onclick = function() {handleClicked(newButton, side, j, i)}
     newButton.id = generateButtonId(side, j, i)
+    newButton.className = 'knob'
 
     let label = document.createElement('label');
 
