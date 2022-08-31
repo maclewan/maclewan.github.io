@@ -1,4 +1,4 @@
-const VERSION = '1.7.0'
+const VERSION = '2.0.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
