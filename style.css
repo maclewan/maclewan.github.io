@@ -6,21 +6,10 @@ html,body {
   -webkit-border-radius: unset;
   -webkit-appearance: none;
   -moz-appearance: none;
-
+  background-color: #d6a087;
 }
 
-body::after {
-  content: "";
-  background-image: url("images/background-blur.png");
-  background-repeat: repeat-y;
-  opacity: 0.8;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}
+
 
 button, label, input {
   font-size: 3.5vw;
@@ -144,7 +133,7 @@ menu > button {
   column-gap: 0;
   padding: 0;
   margin: 15px;
-
+  background-image: url("./images/gold.png");
 }
 
 .div-line{
@@ -204,7 +193,7 @@ menu > button {
   height: 7vw;
   font-size: 3.25vw;
   word-wrap: break-word;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -250,7 +239,7 @@ menu > button {
   height: 4vw;
   font-size: 3.25vw;
   word-wrap: break-word;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
