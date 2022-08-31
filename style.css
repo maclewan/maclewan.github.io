@@ -9,6 +9,19 @@ html,body {
 
 }
 
+body::after {
+  content: "";
+  background-image: url("images/background-blur.png");
+  background-repeat: repeat-y;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
 button, label, input {
   font-size: 3.5vw;
   padding: 0;
@@ -16,7 +29,8 @@ button, label, input {
 }
 
 button, input {
-  box-shadow: 3px 3px 2px lightgray;
+  box-shadow: 2px 2px 2px lightgray;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 button {
@@ -149,8 +163,8 @@ menu > button {
   max-width: 1100px;
   max-height: 1550px;
 
-  column-gap: 15px;
-  row-gap: 15px;
+  column-gap: 13px;
+  row-gap: 13px;
 }
 
 #left-side {
@@ -178,13 +192,23 @@ menu > button {
   aspect-ratio : 1 / 1;
   font-size: 8vw;
   text-align: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
 }
 
 .handle-div > label {
   height: 7vw;
   font-size: 3.25vw;
-  text-align: center;
   word-wrap: break-word;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1px 1px;
 }
 
 #coples {
@@ -214,13 +238,23 @@ menu > button {
   height: 10vw;
   font-size: 8vw;
   text-align: center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
 }
 
 .cople-div > label {
   height: 4vw;
   font-size: 3.25vw;
-  text-align: center;
   word-wrap: break-word;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1px 1px;
 }
 
 

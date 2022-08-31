@@ -4,6 +4,9 @@ const buttonNormal = 'rgb(240, 240, 240)'
 const buttonSelected = 'rgb(214, 214, 214)'
 const buttonHandleAttached = 'rgb(145, 85, 2)'
 
+const knobOn = "url('./images/knob-on.png')"
+const knobOff = "url('./images/knob-off-2-small.png')"
+
 const strings = {}
 
 const PRESETS_DATA_KEY = 'presetsData'
@@ -299,11 +302,18 @@ function updatePresetName(e) {
 }
 
 function setButtonState(button, bool) {
-    button.style.backgroundColor = bool ? buttonHandleAttached : buttonNormal
+    if (bool) {
+        button.style.backgroundImage = knobOn
+        button.setAttribute('state','on')
+    }
+    else {
+        button.style.backgroundImage = knobOff
+        button.setAttribute('state','off')
+    }
 }
 
 function getButtonState(button) {
-    return button.style.backgroundColor === buttonHandleAttached
+    return button.getAttribute('state') === 'on'
 }
 
 function addPresetClicked(above) {
