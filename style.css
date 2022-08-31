@@ -148,7 +148,7 @@ menu > button {
 }
 
 .div-line{
-  border-bottom: 1px solid darkgray;
+  border-bottom: 1px solid black;
   border-left: 0;
   height: 1px;
   width: 100%
@@ -164,7 +164,7 @@ menu > button {
   max-height: 1550px;
 
   column-gap: 13px;
-  row-gap: 13px;
+  row-gap: 18px;
 }
 
 #left-side {
@@ -197,6 +197,7 @@ menu > button {
   background-position: center center;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: none;
+  border: none;
 }
 
 .handle-div > label {
@@ -291,7 +292,7 @@ menu > button {
   }
 
   .div-line{
-    border-left: 1px solid darkgray;
+    border-left: 1px solid black;
     border-bottom: 0;
     height: 90vh;
     width: 1px;
@@ -329,7 +330,7 @@ menu > button {
 
   .register-panel {
     width: 35vw;
-    row-gap: 5px;
+    row-gap: 7px;
   }
 
   #coples {

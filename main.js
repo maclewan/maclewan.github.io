@@ -1,7 +1,7 @@
 const VERSION = '1.7.0'
 
-const buttonNormal = 'rgb(240, 240, 240)'
-const buttonSelected = 'rgb(214, 214, 214)'
+const buttonNormal = 'rgba(240, 240, 240, 0.6)'
+const buttonSelected = 'rgba(162,162,162,0.6)'
 const buttonHandleAttached = 'rgb(145, 85, 2)'
 
 const knobOn = "url('./images/knob-on.png')"
@@ -166,8 +166,9 @@ function generateCell(i, j, panel, panelButtons, dataSide) {
 
     label.innerText = dataSide[j][i]
 
-    div.appendChild(newButton)
     div.appendChild(label)
+    div.appendChild(newButton)
+
 
     panel.append(div)
     panelButtons.push(newButton)
