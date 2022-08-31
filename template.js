@@ -21,7 +21,7 @@ function iOS() {
 }
 
 async function terribleImport(){
-    const response = await fetch('./html2pdf.js')
+    const response = await fetch('./html2pdf/html2pdf.js')
     const text = await response.text()
     eval(text)
 }
@@ -53,11 +53,11 @@ function getValue(preset, side, y, x) {
         return current ? '✖' : ''
     }
     else {
-        let previous = x? presetsData[preset-1][side][y][x] : presetsData[preset-1][side][y]
-
         if (preset === 0) {
             return current ? '➕' : ''
         }
+
+        let previous = x? presetsData[preset-1][side][y][x] : presetsData[preset-1][side][y]
         if (previous === current) {
             return ''
         }

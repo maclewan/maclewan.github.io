@@ -16,7 +16,7 @@ different, not-iOS device.
 ## Registration
 Stops can be marked as attached by clicking on them, what causes color to change
 in corresponding button.
-It refers to stops in main panels, RP panel, ventils and coppels.
+It refers to stops in index panels, RP panel, ventils and coppels.
 
 ![](register-attach.gif)
 

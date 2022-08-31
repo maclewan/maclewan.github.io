@@ -48,9 +48,9 @@ let presetsData = Array()
 let currentPreset = 0
 
 
-main()
+index()
 
-async function main() {
+async function index() {
     await loadData()
     generateMainRegisters()
     setupPresets()
@@ -135,12 +135,12 @@ async function loadData() {
     .then(data => setData(data))
     .catch(error => console.log(error));
 
-    await fetch('./lang.pl.json')
+    await fetch('./lang/pl.json')
     .then(response => response.json())
     .then(data => setLanguageData(data))
     .catch(error => console.log(error));
 
-    await fetch('./lang.en.json')
+    await fetch('./lang/en.json')
     .then(response => response.json())
     .then(data => setLanguageData(data))
     .catch(error => console.log(error));
