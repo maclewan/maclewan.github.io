@@ -79,7 +79,7 @@ menu > button {
 
 #presets-section {
   width: available;
-  height: 50vh;
+  height: 50vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -88,7 +88,7 @@ menu > button {
 #presets-section > div {
   margin: 10px;
   width: 1080px;
-  height: 48vh;
+  height: 45vw;
   display: flex;
   flex-direction: column;
 }
