@@ -1,4 +1,4 @@
-const VERSION = '3.0.1'
+const VERSION = '3.1.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -597,3 +597,47 @@ function languageClicked(lang) {
     language = lang
     loadStrings()
 }
+
+
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+let xDown = null;
+let yDown = null;
+
+function handleTouchStart(evt) {
+    xDown = evt.touches[0].clientX;
+    yDown = evt.touches[0].clientY;
+}
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    let dims = document.getElementById('registers-flex').getBoundingClientRect()
+    if (!(dims.top < yDown && yDown < dims.bottom && dims.left < xDown && xDown < dims.right)){
+        return
+    }
+
+    let xUp = evt.touches[0].clientX;
+    let yUp = evt.touches[0].clientY;
+
+    let xDiff = xDown - xUp;
+    let yDiff = yDown - yUp;
+
+    if(Math.abs( xDiff )+Math.abs( yDiff )<200){
+        return
+    }
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+        if ( xDiff > 0 ) {
+            arrowClicked('left')
+        } else {
+            arrowClicked('right')
+        }
+    }
+    xDown = null;
+    yDown = null;
+
+    }
