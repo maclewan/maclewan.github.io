@@ -1,4 +1,4 @@
-const VERSION = '2.0.1'
+const VERSION = '3.0.1'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -461,6 +461,23 @@ function aboutClicked() {
         "Simple web app to simplify and potentially unify registration process " +
         "for reconstructed Engler organ in Wroclaw. Main purpose is to make organist's and assistant's lives easier, " +
         "and also learn little bit of JavaScript in real live case.")
+}
+
+function arrowClicked(side) {
+    let leftSide = document.getElementById('left-side')
+    let rightSide = document.getElementById('right-side')
+    if (side==='right'){
+        leftSide.style.display = 'none'
+        rightSide.style.display = 'grid'
+    }
+    else if (side==='left'){
+        leftSide.style.display = 'grid'
+        rightSide.style.display = 'none'
+    }
+    else {
+        return null
+    }
+
 }
 
 function generatePDFClicked() {

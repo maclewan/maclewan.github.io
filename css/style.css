@@ -41,6 +41,7 @@ nav {
   width: 30vw;
   margin: 5px;
 }
+
 .language-button {
   margin: 5px;
   width: 8vw;
@@ -122,13 +123,25 @@ menu > button {
     margin-bottom: 10px;
 }
 
+#side-switch-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.arrow-button {
+  margin: 5px;
+  width: 10vw;
+  height: 5vw;
+}
+
 #registers-flex {
   /*background-color: aqua;*/
   border: 1px solid black;
   border-radius: 5px;
   width: available;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   column-gap: 0;
   padding: 0;
@@ -136,11 +149,16 @@ menu > button {
   background-image: url("../images/perpetum-debile.png");
 }
 
+#left-side {
+  display: grid;
+}
+
+#right-side {
+  display: none;
+}
+
 .div-line{
-  border-bottom: 1px solid black;
-  border-left: 0;
-  height: 1px;
-  width: 100%
+  display: none;
 }
 
 .register-panel {
@@ -199,7 +217,7 @@ menu > button {
 
 .handle-div > label {
   height: 7vw;
-  font-size: 3.25vw;
+  font-size: 2.75vw;
   word-wrap: break-word;
   background: rgb(20, 20, 20);
   color: rgb(218,165,32);
@@ -207,26 +225,29 @@ menu > button {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1px 1px;
+  padding: 2px 1px;
 }
 
 
 #coples {
   /*background-color: #607c58;*/
-  height: fit-content;
-  width: 100%;
+  width: fit-content;
+  height: 90vw;
   padding-top: 40px;
   padding-bottom: 30px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .cople-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+
   min-width: 0;
   min-height: 0;
   padding: 10px;
@@ -234,9 +255,8 @@ menu > button {
 }
 
 .cople-div > button {
-  width: 30vw;
+  width: 10vw;
   height: 10vw;
-  font-size: 8vw;
   text-align: center;
   background-size: auto 100%;
   background-repeat: no-repeat;
@@ -248,18 +268,30 @@ menu > button {
 
 .cople-div > label {
   height: 4vw;
-  font-size: 3.25vw;
+  font-size: 2.75vw;
   word-wrap: break-word;
   background: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1px 1px;
+  padding: 2px 2px;
 }
 
+.cople-spacer {
+    flex: 1;
+}
+
+@media screen and (min-width:900px) {
+  .handle-div > label {
+    font-size: 3.25vw;
+  }
+}
 
 @media screen and (min-width:1100px) {
+  #side-switch-div {
+    display: none;
+  }
 
   menu {
     display: none;
@@ -302,7 +334,7 @@ menu > button {
     flex-direction: column;
     justify-items: end;
     width: 15vw;
-    height: 95vh;
+    height: 75vw;
   }
 
   #presets-section > div {
@@ -322,10 +354,17 @@ menu > button {
     font-size: 1.2vw;
   }
 
+  #left-side {
+    display: grid;
+  }
+  #right-side {
+    display: grid;
+  }
+
   #registers-flex {
     flex-direction: row;
     justify-content: center;
-    max-height: 90vh;
+    max-height: 70vw;
   }
 
   .register-panel {
@@ -336,7 +375,7 @@ menu > button {
   #coples {
     padding: 0 5px;
     width: fit-content;
-    height: 90vh;
+    height: 70vw;
     flex-direction: column;
   }
 
@@ -399,6 +438,20 @@ menu > button {
     font-size: 19px;
     height: 60px;
 
+  }
+
+  #registers-flex {
+    flex-direction: row;
+    justify-content: center;
+    max-height: 90vh;
+  }
+
+  #coples {
+    height: 90vh;
+  }
+
+  #presets-section {
+    height: 95vh;
   }
 }
 
