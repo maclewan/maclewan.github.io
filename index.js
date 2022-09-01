@@ -1,4 +1,4 @@
-const VERSION = '3.1.0'
+const VERSION = '3.1.1'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -632,9 +632,9 @@ function handleTouchMove(evt) {
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
         if ( xDiff > 0 ) {
-            arrowClicked('left')
-        } else {
             arrowClicked('right')
+        } else {
+            arrowClicked('left')
         }
     }
     xDown = null;
