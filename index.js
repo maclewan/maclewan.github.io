@@ -1,4 +1,4 @@
-const VERSION = '3.1.1'
+const VERSION = '3.2.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -13,6 +13,7 @@ const PRESETS_NAMES_KEY = 'presetNames'
 const DIFFMODES_NAMES_KEY = 'diffModes'
 const SESSION_DATA_KEY = 'sessionData'
 const LANGUAGE_KEY = 'language'
+const PDF_NAME = 'pdfName'
 
 const tutorials = {
     pl: 'https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUKCJA.md#poradniczek',
@@ -481,6 +482,11 @@ function arrowClicked(side) {
 }
 
 function generatePDFClicked() {
+    let fname = prompt(strings[language].extras['provide-pdf-name'])
+    if (!fname) {
+        return
+    }
+    localStorage.setItem(PDF_NAME, JSON.stringify(fname))
     displayModal()
 }
 

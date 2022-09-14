@@ -1,9 +1,11 @@
 let presetsData = Array()
 let presetNames = Array()
 let diffModes = Array()
+let pdfName = ''
 const PRESETS_DATA_KEY = 'presetsData'
 const PRESETS_NAMES_KEY = 'presetNames'
 const DIFFMODES_NAMES_KEY = 'diffModes'
+const PDF_NAME = 'pdfName'
 
 main()
 
@@ -35,6 +37,8 @@ function loadData() {
     presetsData = JSON.parse(localStorage.getItem(PRESETS_DATA_KEY))
     presetNames = JSON.parse(localStorage.getItem(PRESETS_NAMES_KEY))
     diffModes = JSON.parse(localStorage.getItem(DIFFMODES_NAMES_KEY))
+    pdfName = JSON.parse(localStorage.getItem(PDF_NAME))
+    pdfName = pdfName.endsWith('.pdf') ? `${pdfName}` : `${pdfName}.pdf`
 }
 
 function setFieldValue(cell, value) {
@@ -121,14 +125,26 @@ async function generateHTML() {
     }
     if (presetCount > 1) {
         let container = document.getElementById('container-0')
+        let page_num = 1
         for (let i=1; i< presetCount; i++){
             let newContainer = container.cloneNode(true)
             newContainer.setAttribute('id', `container-${i}`)
             if (i % 3 === 2 && presetCount - 1 !== i){
                 let divPageBreak = document.createElement('div')
                 divPageBreak.className = 'html2pdf__page-break'
+                let page_num_h2 = document.createElement('h2')
+                page_num_h2.innerHTML = `${pdfName}: Page ${page_num}.`
+                page_num++
+                newContainer.appendChild(page_num_h2)
                 newContainer.appendChild(divPageBreak)
             }
+            if (presetCount - 1 === i){
+                let page_num_h2 = document.createElement('h2')
+                page_num_h2.innerHTML = `${pdfName}: Page ${page_num}.`
+                page_num++
+                newContainer.appendChild(page_num_h2)
+            }
+
             container.parentNode.appendChild(newContainer)
         }
     }
@@ -142,7 +158,9 @@ async function generateHTML() {
         fillPresetName(i)
     }
 
-    const fileName = `Registration-presets-${new Date().toLocaleString().replace(',', '').replace(' ', '-')}.pdf`
+    //const fileName = `Registration-presets-${new Date().toLocaleString().replace(',', '').replace(' ', '-')}.pdf`
+    let fileName = pdfName
+
     const optIOS = {
         image: {
           type: "jpeg",

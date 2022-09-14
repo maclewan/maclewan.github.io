@@ -23,6 +23,7 @@
             "delete-preset": "Wszystkie dane z tej kombinacji zostaną usunięte, chcesz kontynuować?",
             "clear-preset": "Wszystkie dane z tej kombinacji zostaną wyczyszczone, chcesz kontynuować?",
             "provide-filename": "Podaj nazwę pliku:",
+            "provide-pdf-name": "Podaj nazwę dla pliku pdf:",
             "config-version-wrong": "Nie można załadować tego pliku, ze względu na wersję konfiguracji, która nie jest wspierana.",
             "preset-name-label": "Nazwa kombinacji",
             "diff-mode-label": "Tryb zmian (+/-)"

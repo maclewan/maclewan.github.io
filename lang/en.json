@@ -23,6 +23,7 @@
             "delete-preset": "Are you sure? All data of this preset will be lost.",
             "clear-preset": "Are you sure? All data in this preset will be cleared.",
             "provide-filename": "Provide file name:",
+            "provide-pdf-name": "Provide pdf file name:",
             "config-version-wrong": "Cannot load this file, as config version is different as current!",
             "preset-name-label": "Preset name",
             "diff-mode-label": "Diff mode (+/-)"
