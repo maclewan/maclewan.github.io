@@ -448,7 +448,6 @@ function parseEnglerJsonData(loadedData){
     presetsData = Array()
     currentPreset = 0
     for (const [presetName, value] of Object.entries(loadedData.presets)) {
-        console.log(presetName)
         presetsData.push(value);
 
         let button = document.createElement('button');
