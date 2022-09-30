@@ -1,4 +1,4 @@
-const VERSION = '3.2.0'
+const VERSION = '3.3.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -14,6 +14,8 @@ const DIFFMODES_NAMES_KEY = 'diffModes'
 const SESSION_DATA_KEY = 'sessionData'
 const LANGUAGE_KEY = 'language'
 const PDF_NAME = 'pdfName'
+
+const ZERO_WIDTH_SPACE = '​'
 
 const tutorials = {
     pl: 'https://github.com/maclewan/maclewan.github.io/blob/main/instruction/INSTRUKCJA.md#poradniczek',
@@ -299,6 +301,8 @@ function updatePresetName(e) {
     if (e.target.value === ''){
         e.target.value = 'Empty Name'
     }
+    e.target.value = e.target.value.replaceAll(ZERO_WIDTH_SPACE, '')
+    e.target.value = e.target.value.concat(ZERO_WIDTH_SPACE)
     presetButtonsList[currentPreset].textContent = e.target.value
 }
 
@@ -439,10 +443,11 @@ function parseEnglerJsonData(loadedData){
     for (let i=existingPresetsCount-1; i>0; i--) {
         parent.removeChild(presetButtonsList[i])
     }
+
+    // new presets
     presetsData = Array()
     currentPreset = 0
     for (const [presetName, value] of Object.entries(loadedData.presets)) {
-
         presetsData.push(value);
 
         let button = document.createElement('button');
