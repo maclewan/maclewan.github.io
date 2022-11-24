@@ -1,4 +1,4 @@
-const VERSION = '3.3.0'
+const VERSION = '3.4.0'
 
 const buttonNormal = 'rgba(240, 240, 240, 0.6)'
 const buttonSelected = 'rgba(162,162,162,0.6)'
@@ -62,6 +62,7 @@ async function index() {
     tryLoadingOldSession()
     loadStrings()
     setVersion()
+    setupModal()
 }
 
 function iOS() {
@@ -86,6 +87,21 @@ function loadStrings() {
         })
     }
     tutorial = tutorials[language]
+}
+
+function setupModal() {
+    let rowsContainer = document.getElementById('modal-rows')
+    let modalContainer = document.getElementById('modal-content')
+
+    let modalTitleRow = document.createElement('div')
+    modalTitleRow.className = 'modal-row'
+    let label1 = document.createElement('label')
+    let label2 = document.createElement('label')
+    label1.textContent = strings[language].extras['preset-name-label']
+    label2.textContent = strings[language].extras['diff-mode-label']
+    modalTitleRow.appendChild(label1)
+    modalTitleRow.appendChild(label2)
+    modalContainer.insertBefore(modalTitleRow, rowsContainer)
 }
 
 function newPresetTable() {
@@ -569,17 +585,6 @@ function displayModal() {
         first.remove()
         first = rowsContainer.firstElementChild
     }
-
-    let modalTitleRow = document.createElement('div')
-    modalTitleRow.className = 'modal-row'
-    let label1 = document.createElement('label')
-    let label2 = document.createElement('label')
-    label1.textContent = strings[language].extras['preset-name-label']
-    label2.textContent = strings[language].extras['diff-mode-label']
-    modalTitleRow.appendChild(label1)
-    modalTitleRow.appendChild(label2)
-    rowsContainer.appendChild(modalTitleRow)
-    rowsContainer.appendChild(document.createElement('hr'))
 
     Array.from(presetButtonsList).forEach((button, index) => {
         let modalRow = document.createElement('div')

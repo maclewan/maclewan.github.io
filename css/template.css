@@ -1,5 +1,5 @@
 :root {
-    --base-unit: 18px;
+    --base-unit: 17px;
     --2-base-unit: calc(var(--base-unit) * 2);
     --3-base-unit: calc(var(--base-unit) * 3);
     --10-base-unit: calc(var(--base-unit) * 10);

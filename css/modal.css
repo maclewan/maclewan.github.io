@@ -23,6 +23,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  height: 80%;
 }
 
 /* The Close Button */
@@ -43,12 +44,18 @@
 #modal-rows {
   display: flex;
   flex-direction: column;
-
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 5px;
 }
 
 .modal-row {
   display: flex;
   flex-direction: row;
+  background-color: #cccccc;
+  border: 1px solid #333333;
+  padding: 1px;
+  margin-bottom: 2px;
 }
 
 .modal-row > label {
